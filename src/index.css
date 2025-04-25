@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+/* Estilos personalizados */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: rgb(249, 115, 22);
+}
+
+.btn-primary:hover {
+  background-color: rgb(234, 88, 12);
+}
+
+@layer components {
+  .font-script {
+    font-family: 'Great Vibes', cursive;
+  }
+  .font-display {
+    font-family: 'Playfair Display', serif;
+  }
+}
