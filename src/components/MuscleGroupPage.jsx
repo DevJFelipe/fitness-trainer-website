@@ -3,6 +3,33 @@ import { useParams } from 'react-router-dom';
 import AuthNavbar from './AuthNavbar';
 
 const exercisesByMuscleGroup = {
+  pectorales: {
+    title: "Todo sobre Pectorales",
+    description: 'El pectoral mayor y menor forman el grupo muscular del pecho. Un entrenamiento adecuado te ayudará a desarrollar fuerza y una apariencia más definida.',
+    exercises: [
+      {
+        name: "Press de banca con barra",
+        image: "/src/assets/ejercicios/pecho/press-banca.webp",
+        difficulty: "Intermedio",
+        equipment: "Barra y banco",
+        videoUrl: "#"
+      },
+      {
+        name: "Aperturas con mancuernas",
+        image: "/src/assets/ejercicios/pecho/aperturas-mancuernas.webp",
+        difficulty: "Principiante",
+        equipment: "Mancuernas",
+        videoUrl: "#"
+      },
+      {
+        name: "Fondos en paralelas",
+        image: "/src/assets/ejercicios/pecho/fondos-paralelas.webp",
+        difficulty: "Avanzado",
+        equipment: "Barras paralelas",
+        videoUrl: "#"
+      }
+    ]
+  },
   espalda: {
     title: "Todo sobre Espalda",
     description: 'La espalda está compuesta por varios músculos (dorsales, infraespinoso, trapecio, entre otros). Es la constante ejecución de ejercicios lo que le dará volumen y armonía a tu espalda con la anhelada forma de "V". Comienza con los siguientes ejercicios.',
@@ -30,76 +57,15 @@ const exercisesByMuscleGroup = {
       }
     ]
   },
-  pecho: {
-    title: "Todo sobre Pecho",
-    description: 'El pecho es uno de los grupos musculares más populares para entrenar. Está compuesto principalmente por el pectoral mayor y menor. Un entrenamiento adecuado te ayudará a desarrollar fuerza y una apariencia más definida.',
-    exercises: [
-      {
-        name: "Press de banca con barra",
-        image: "/src/assets/ejercicios/pecho/press-banca.webp",
-        difficulty: "Intermedio",
-        equipment: "Barra y banco",
-        videoUrl: "#"
-      },
-      {
-        name: "Aperturas con mancuernas",
-        image: "/src/assets/ejercicios/pecho/aperturas-mancuernas.webp",
-        difficulty: "Principiante",
-        equipment: "Mancuernas",
-        videoUrl: "#"
-      },
-      {
-        name: "Fondos en paralelas",
-        image: "/src/assets/ejercicios/pecho/fondos-paralelas.webp",
-        difficulty: "Avanzado",
-        equipment: "Barras paralelas",
-        videoUrl: "#"
-      }
-    ]
-  },
-  piernas: {
-    title: "Todo sobre Piernas",
-    description: 'Las piernas son el fundamento de un cuerpo fuerte y equilibrado. Incluyen músculos como cuádriceps, isquiotibiales, gemelos y glúteos. El entrenamiento de piernas es esencial para un desarrollo muscular completo.',
-    exercises: [
-      {
-        name: "Sentadillas con barra",
-        image: "/src/assets/ejercicios/piernas/sentadillas-barra.webp",
-        difficulty: "Intermedio",
-        equipment: "Barra",
-        videoUrl: "#"
-      },
-      {
-        name: "Peso muerto",
-        image: "/src/assets/ejercicios/piernas/peso-muerto.webp",
-        difficulty: "Avanzado",
-        equipment: "Barra",
-        videoUrl: "#"
-      },
-      {
-        name: "Extensiones de pierna",
-        image: "/src/assets/ejercicios/piernas/extensiones-pierna.webp",
-        difficulty: "Principiante",
-        equipment: "Máquina",
-        videoUrl: "#"
-      }
-    ]
-  },
-  brazos: {
-    title: "Todo sobre Brazos",
-    description: 'Los brazos incluyen bíceps, tríceps y antebrazos. Un entrenamiento equilibrado de estos músculos te ayudará a desarrollar fuerza y definición en tus brazos, mejorando tanto su apariencia como su funcionalidad.',
+  biceps: {
+    title: "Todo sobre Bíceps",
+    description: 'El bíceps braquial es el músculo principal de la parte frontal del brazo. Su entrenamiento mejora la fuerza y la estética del brazo.',
     exercises: [
       {
         name: "Curl de bíceps con barra",
         image: "/src/assets/ejercicios/brazos/curl-biceps-barra.webp",
         difficulty: "Principiante",
         equipment: "Barra",
-        videoUrl: "#"
-      },
-      {
-        name: "Extensiones de tríceps en polea",
-        image: "/src/assets/ejercicios/brazos/extensiones-triceps.webp",
-        difficulty: "Principiante",
-        equipment: "Polea",
         videoUrl: "#"
       },
       {
@@ -111,9 +77,22 @@ const exercisesByMuscleGroup = {
       }
     ]
   },
-  abdominales: {
-    title: "Todo sobre Abdominales",
-    description: 'Los abdominales son fundamentales para la estabilidad del core y una buena postura. Un entrenamiento efectivo de abdominales implica trabajar tanto el rectus abdominis como los oblicuos y el transverso.',
+  triceps: {
+    title: "Todo sobre Tríceps",
+    description: 'El tríceps braquial es el músculo principal de la parte posterior del brazo. Es fundamental para la extensión del codo y la fuerza general del brazo.',
+    exercises: [
+      {
+        name: "Extensiones de tríceps en polea",
+        image: "/src/assets/ejercicios/brazos/extensiones-triceps.webp",
+        difficulty: "Principiante",
+        equipment: "Polea",
+        videoUrl: "#"
+      }
+    ]
+  },
+  abdomen: {
+    title: "Todo sobre Abdomen",
+    description: 'El abdomen es fundamental para la estabilidad del core y una buena postura. Un entrenamiento efectivo implica trabajar tanto el rectus abdominis como los oblicuos y el transverso.',
     exercises: [
       {
         name: "Crunches",
@@ -161,6 +140,60 @@ const exercisesByMuscleGroup = {
         image: "/src/assets/ejercicios/hombros/face-pull.webp",
         difficulty: "Intermedio",
         equipment: "Polea",
+        videoUrl: "#"
+      }
+    ]
+  },
+  pantorrillas: {
+    title: "Todo sobre Pantorrillas",
+    description: 'Las pantorrillas son músculos que requieren constancia y variedad en su entrenamiento. Un desarrollo adecuado de las pantorrillas mejora la estabilidad y el rendimiento en diversos deportes.',
+    exercises: [
+      {
+        name: "Elevación de talones de pie",
+        image: "/src/assets/ejercicios/pantorrillas/elevacion-talones.webp",
+        difficulty: "Principiante",
+        equipment: "Máquina",
+        videoUrl: "#"
+      },
+      {
+        name: "Elevación de talones sentado",
+        image: "/src/assets/ejercicios/pantorrillas/elevacion-talones-sentado.webp",
+        difficulty: "Principiante",
+        equipment: "Máquina",
+        videoUrl: "#"
+      },
+      {
+        name: "Elevación de talones con mancuernas",
+        image: "/src/assets/ejercicios/pantorrillas/elevacion-talones-mancuernas.webp",
+        difficulty: "Intermedio",
+        equipment: "Mancuernas",
+        videoUrl: "#"
+      }
+    ]
+  },
+  piernas: {
+    title: "Todo sobre Piernas",
+    description: 'Las piernas son el fundamento de un cuerpo fuerte y equilibrado. Incluyen músculos como cuádriceps, isquiotibiales, gemelos y glúteos. El entrenamiento de piernas es esencial para un desarrollo muscular completo.',
+    exercises: [
+      {
+        name: "Sentadillas con barra",
+        image: "/src/assets/ejercicios/piernas/sentadillas-barra.webp",
+        difficulty: "Intermedio",
+        equipment: "Barra",
+        videoUrl: "#"
+      },
+      {
+        name: "Peso muerto",
+        image: "/src/assets/ejercicios/piernas/peso-muerto.webp",
+        difficulty: "Avanzado",
+        equipment: "Barra",
+        videoUrl: "#"
+      },
+      {
+        name: "Extensiones de pierna",
+        image: "/src/assets/ejercicios/piernas/extensiones-pierna.webp",
+        difficulty: "Principiante",
+        equipment: "Máquina",
         videoUrl: "#"
       }
     ]

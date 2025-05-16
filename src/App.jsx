@@ -8,6 +8,7 @@ import BlogPost from './components/BlogPost'
 import ExercisesPage from './components/ExercisesPage'
 import MuscleGroupPage from './components/MuscleGroupPage'
 import RoutinesPage from './components/RoutinesPage'
+import RoutineDetailPage from './components/RoutineDetailPage'
 
 export default function App() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
 
       {/* Página de rutinas */}
       <Route path="/rutinas" element={<RoutinesPage />} />
+      <Route path="/rutinas/:routineId" element={<RoutineDetailPage />} />
 
       {/* Cualquier otra ruta te redirige a "/" */}
       <Route path="*" element={<Navigate to="/" replace />} />

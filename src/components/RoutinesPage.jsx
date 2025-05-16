@@ -1,42 +1,39 @@
 import React from 'react';
 import AuthNavbar from './AuthNavbar';
+import { Link } from 'react-router-dom';
 
 const routines = [
   {
-    id: 1,
+    id: 'fuerza-principiantes',
     title: 'Rutina de Fuerza para Principiantes',
     description: 'Perfecta para quienes comienzan en el gimnasio. Enfocada en desarrollar fuerza base y técnica correcta.',
     duration: '8 semanas',
     level: 'Principiante',
     image: '/src/assets/rutinas/fuerza-principiantes.webp',
-    path: '/rutinas/fuerza-principiantes'
   },
   {
-    id: 2,
+    id: 'hipertrofia-avanzada',
     title: 'Rutina de Hipertrofia Avanzada',
     description: 'Diseñada para maximizar el crecimiento muscular. Incluye técnicas avanzadas de entrenamiento.',
     duration: '12 semanas',
     level: 'Avanzado',
     image: '/src/assets/rutinas/hipertrofia-avanzada.webp',
-    path: '/rutinas/hipertrofia-avanzada'
   },
   {
-    id: 3,
+    id: 'definicion-muscular',
     title: 'Rutina de Definición Muscular',
     description: 'Combinación perfecta de entrenamiento y nutrición para lograr una definición muscular óptima.',
     duration: '6 semanas',
     level: 'Intermedio',
     image: '/src/assets/rutinas/definicion-muscular.webp',
-    path: '/rutinas/definicion-muscular'
   },
   {
-    id: 4,
+    id: 'fuerza-funcional',
     title: 'Rutina de Fuerza Funcional',
     description: 'Mejora tu fuerza y movilidad con ejercicios funcionales que mejoran tu rendimiento diario.',
     duration: '8 semanas',
     level: 'Intermedio',
     image: '/src/assets/rutinas/fuerza-funcional.webp',
-    path: '/rutinas/fuerza-funcional'
   }
 ];
 
@@ -89,8 +86,8 @@ export default function RoutinesPage() {
                 <p className="text-[#1A1A1A]/70 mb-4">
                   {routine.description}
                 </p>
-                <a
-                  href={routine.path}
+                <Link
+                  to={`/rutinas/${routine.id}`}
                   className="inline-flex items-center text-[#ff6600] font-semibold group-hover:text-[#ff8533] transition-colors duration-300"
                 >
                   Ver rutina completa
@@ -107,7 +104,7 @@ export default function RoutinesPage() {
                       d="M9 5l7 7-7 7"
                     />
                   </svg>
-                </a>
+                </Link>
               </div>
             </div>
           ))}
