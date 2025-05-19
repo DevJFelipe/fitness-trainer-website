@@ -13,25 +13,24 @@ export default function BlogPost() {
   }
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="min-h-screen bg-gradient-to-br from-[#fff7f0] via-[#f0f4ff] to-[#ffe6e6]">
       <AuthNavbar />
-      <main className="container mx-auto px-6 py-10">
-        {/* Cabecera del artículo */}
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold text-[#1A1A1A] mb-4">{post.title}</h1>
-          <p className="text-gray-600 mb-8">{new Date(post.date).toLocaleDateString()}</p>
-          
-          {/* Imagen destacada */}
-          <div className="mb-8">
+      <main className="container mx-auto px-4 py-12 max-w-3xl">
+        <div className="bg-white/70 backdrop-blur-lg rounded-3xl shadow-2xl p-8 md:p-12 mt-8 mb-12 border border-white/40">
+          <h1 className="text-4xl md:text-5xl font-black text-[#1A1A1A] mb-4 drop-shadow-lg">
+            {post.title}
+          </h1>
+          <p className="text-[#ff6600] font-semibold mb-8 text-base md:text-lg">
+            {new Date(post.date).toLocaleDateString()}
+          </p>
+          <div className="mb-8 rounded-2xl overflow-hidden shadow-lg">
             <img 
               src={post.image} 
               alt={post.title}
-              className="w-full h-[400px] object-cover rounded-lg shadow-lg"
+              className="w-full h-[320px] object-cover rounded-2xl"
             />
           </div>
-
-          {/* Contenido del artículo */}
-          <article className="prose prose-lg max-w-none prose-headings:text-[#1A1A1A] prose-a:text-[#ff6600] prose-strong:text-[#1A1A1A]">
+          <article className="prose prose-lg max-w-none prose-headings:text-[#1A1A1A] prose-a:text-[#ff6600] prose-strong:text-[#1A1A1A] prose-p:text-[#222]">
             <ReactMarkdown>{post.content}</ReactMarkdown>
           </article>
         </div>
