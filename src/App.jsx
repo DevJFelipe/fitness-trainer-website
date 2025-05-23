@@ -9,6 +9,8 @@ import ExercisesPage from './pages/ExercisesPage'
 import MuscleGroupPage from './pages/MuscleGroupPage'
 import RoutinesPage from './pages/RoutinesPage'
 import RoutineDetailPage from './components/routines/RoutineDetailPage'
+import Register from './components/auth/Register'
+import Profile from './pages/Profile'
 
 export default function App() {
   return (
@@ -18,6 +20,9 @@ export default function App() {
 
       {/* Login form */}
       <Route path="/login" element={<Login />} />
+
+      {/* Register form */}
+      <Route path="/register" element={<Register />} />
 
       {/* Dashboard de blog */}
       <Route path="/blog" element={<BlogPage />} />
@@ -34,6 +39,9 @@ export default function App() {
       {/* Página de rutinas */}
       <Route path="/rutinas" element={<RoutinesPage />} />
       <Route path="/rutinas/:routineId" element={<RoutineDetailPage />} />
+
+      {/* Página de perfil de usuario */}
+      <Route path="/perfil" element={<Profile />} />
 
       {/* Cualquier otra ruta te redirige a "/" */}
       <Route path="*" element={<Navigate to="/" replace />} />

@@ -1,6 +1,7 @@
 // src/components/Login.jsx
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { supabase } from '../../config/supabaseClient'
 import Background from '../layout/Background'
 import Navbar from '../layout/Navbar'
 import backgroundImage from '../../assets/background-image.png'
@@ -8,12 +9,28 @@ import backgroundImage from '../../assets/background-image.png'
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // tu lógica real de login aquí...
+    setIsLoading(true)
+    setError(null)
+
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
+
+    if (error) {
+      setError(error.message)
+      setIsLoading(false)
+      return
+    }
+
     navigate('/blog')
+    setIsLoading(false)
   }
 
   return (
@@ -57,11 +74,17 @@ export default function Login() {
                 required
               />
             </div>
+            {error && (
+              <div className="mb-2 p-2 bg-red-100 text-red-700 rounded text-sm">
+                {error}
+              </div>
+            )}
             <button
               type="submit"
-              className="w-full bg-[#ff6600] text-white font-bold py-2 rounded-lg hover:bg-orange-600 transition"
+              disabled={isLoading}
+              className={`w-full bg-[#ff6600] text-white font-bold py-2 rounded-lg hover:bg-orange-600 transition ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
             >
-              Iniciar Sesión
+              {isLoading ? 'Ingresando...' : 'Iniciar Sesión'}
             </button>
           </form>
         </div>

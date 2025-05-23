@@ -1,5 +1,6 @@
 // src/components/AuthNavbar.jsx
 import { FaSearch, FaBars, FaUserCircle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const links = [
   { label: 'Blog', href: '/blog' },
@@ -42,10 +43,10 @@ export default function AuthNavbar() {
             </button>
 
             {/* Perfil */}
-            <button className="hidden md:flex items-center space-x-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full transition-all duration-300">
+            <Link to="/perfil" className="hidden md:flex items-center space-x-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full transition-all duration-300">
               <FaUserCircle size={20} />
               <span className="font-semibold">Mi Perfil</span>
-            </button>
+            </Link>
 
             {/* Menú móvil */}
             <button className="md:hidden text-white hover:text-black transition-colors duration-300">
