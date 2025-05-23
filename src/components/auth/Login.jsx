@@ -1,9 +1,9 @@
 // src/components/Login.jsx
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Background from './Background'
-import Navbar from './Navbar'
-import backgroundImage from '../assets/background-image.png'
+import Background from '../layout/Background'
+import Navbar from '../layout/Navbar'
+import backgroundImage from '../../assets/background-image.png'
 
 export default function Login() {
   const [email, setEmail] = useState('')

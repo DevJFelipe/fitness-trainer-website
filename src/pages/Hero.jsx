@@ -1,6 +1,6 @@
 // src/components/Hero.jsx
 import { useNavigate } from 'react-router-dom'
-import ServiceItem from './ServiceItem'
+import ServiceItem from '../components/ServiceItem'
 
 export default function Hero() {
   const navigate = useNavigate()

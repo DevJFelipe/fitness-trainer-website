@@ -1,9 +1,9 @@
 // src/components/BlogPage.jsx
 import React, { useMemo } from 'react';
-import AuthNavbar from './AuthNavbar';
-import CategorySection from './CategorySection';
+import AuthNavbar from '../components/layout/AuthNavbar';
+import CategorySection from '../components/CategorySection';
 import { posts } from '../data/posts';
-import BlogCard from './BlogCard';
+import BlogCard from '../components/blog/BlogCard';
 
 export default function BlogPage() {
   const organizedPosts = useMemo(() => {

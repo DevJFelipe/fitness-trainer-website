@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import AuthNavbar from './AuthNavbar';
+import AuthNavbar from '../components/layout/AuthNavbar';
 
 const exercisesByMuscleGroup = {
   pectorales: {

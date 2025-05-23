@@ -1,14 +1,14 @@
 // src/App.jsx
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import LandingPage from './components/LandingPage'
-import Login from './components/Login'
-import BlogPage from './components/BlogPage'
-import BlogPost from './components/BlogPost'
-import ExercisesPage from './components/ExercisesPage'
-import MuscleGroupPage from './components/MuscleGroupPage'
-import RoutinesPage from './components/RoutinesPage'
-import RoutineDetailPage from './components/RoutineDetailPage'
+import LandingPage from './pages/LandingPage'
+import Login from './components/auth/Login'
+import BlogPage from './pages/BlogPage'
+import BlogPost from './components/blog/BlogPost'
+import ExercisesPage from './pages/ExercisesPage'
+import MuscleGroupPage from './pages/MuscleGroupPage'
+import RoutinesPage from './pages/RoutinesPage'
+import RoutineDetailPage from './components/routines/RoutineDetailPage'
 
 export default function App() {
   return (

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import AuthNavbar from './AuthNavbar';
+import AuthNavbar from '../layout/AuthNavbar';
 import { useParams, Navigate } from 'react-router-dom';
-import { posts } from '../data/posts';
+import { posts } from '../../data/posts';
 
 export default function BlogPost() {
   const { id } = useParams();
