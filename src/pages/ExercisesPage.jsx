@@ -1,7 +1,7 @@
 // src/components/ExercisesPage.jsx
 import React from 'react'
 import { Link } from 'react-router-dom'
-import AuthNavbar from './AuthNavbar'
+import AuthNavbar from '../components/layout/AuthNavbar'
 
 const muscleGroups = [
   { name: "Pectorales",   image: "/src/assets/pecho.webp",        path: "/ejercicios/pectorales" },

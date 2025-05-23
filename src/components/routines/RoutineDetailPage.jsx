@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import AuthNavbar from './AuthNavbar';
+import AuthNavbar from '../layout/AuthNavbar';
 
 const routines = [
   {

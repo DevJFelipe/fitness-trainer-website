@@ -1,6 +1,6 @@
 import backgroundImage from '../assets/background-image.png'
-import Background from './Background'
-import Navbar from './Navbar'
+import Background from '../components/layout/Background'
+import Navbar from '../components/layout/Navbar'
 import Hero from './Hero'
 
 export default function LandingPage() {

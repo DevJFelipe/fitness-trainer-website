@@ -1,5 +1,5 @@
 import React from 'react';
-import AuthNavbar from './AuthNavbar';
+import AuthNavbar from '../components/layout/AuthNavbar';
 import { Link } from 'react-router-dom';
 
 const routines = [

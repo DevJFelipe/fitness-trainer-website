@@ -1,5 +1,5 @@
 // src/components/CategorySection.jsx
-import BlogCard from './BlogCard';
+import BlogCard from './blog/BlogCard';
 
 export default function CategorySection({ title, posts }) {
   return (
