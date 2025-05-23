@@ -42,9 +42,9 @@ export default function Hero() {
           ))}
         </div>
 
-        {/* CTA: navegar a /login */}
+        {/* CTA: navegar a /register */}
         <button
-          onClick={() => navigate('/login')}
+          onClick={() => navigate('/register')}
           className="
             mt-8 
             bg-white text-black font-black text-xl 
