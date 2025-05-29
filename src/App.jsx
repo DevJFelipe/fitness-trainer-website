@@ -3,12 +3,15 @@ import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import LandingPage from './pages/LandingPage'
 import Login from './components/auth/Login'
+import Register from './components/auth/Register'
 import BlogPage from './pages/BlogPage'
 import BlogPost from './components/blog/BlogPost'
 import ExercisesPage from './pages/ExercisesPage'
 import MuscleGroupPage from './pages/MuscleGroupPage'
 import RoutinesPage from './pages/RoutinesPage'
 import RoutineDetailPage from './components/routines/RoutineDetailPage'
+import AdminDashboard from './pages/AdminDashboard'
+import TestConnection from './pages/TestConnection'
 
 export default function App() {
   return (
@@ -18,6 +21,12 @@ export default function App() {
 
       {/* Login form */}
       <Route path="/login" element={<Login />} />
+
+      {/* Register form */}
+      <Route path="/register" element={<Register />} />
+
+      {/* Admin Dashboard */}
+      <Route path="/admin" element={<AdminDashboard />} />
 
       {/* Dashboard de blog */}
       <Route path="/blog" element={<BlogPage />} />
@@ -29,11 +38,12 @@ export default function App() {
       <Route path="/ejercicios" element={<ExercisesPage />} />
 
       {/* Páginas de grupos musculares específicos */}
-      <Route path="/ejercicios/:muscleGroup" element={<MuscleGroupPage />} />
-
-      {/* Página de rutinas */}
+      <Route path="/ejercicios/:muscleGroup" element={<MuscleGroupPage />} />      {/* Página de rutinas */}
       <Route path="/rutinas" element={<RoutinesPage />} />
       <Route path="/rutinas/:routineId" element={<RoutineDetailPage />} />
+
+      {/* Página de prueba de conexión */}
+      <Route path="/test" element={<TestConnection />} />
 
       {/* Cualquier otra ruta te redirige a "/" */}
       <Route path="*" element={<Navigate to="/" replace />} />

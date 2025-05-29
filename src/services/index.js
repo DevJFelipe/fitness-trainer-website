@@ -1,0 +1,11 @@
+// src/services/index.js
+export { authService } from './authService'
+export { blogService } from './blogService'
+export { planService } from './planService'
+export { testimonioService } from './testimonioService'
+export { usuarioService } from './usuarioService'
+export { contenidoService } from './contenidoService'
+export { eventoService } from './eventoService'
+export { seguimientoService } from './seguimientoService'
+export { consultaService } from './consultaService'
+export { rolService } from './rolService'
