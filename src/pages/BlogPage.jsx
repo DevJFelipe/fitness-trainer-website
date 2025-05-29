@@ -63,7 +63,7 @@ export default function BlogPage() {
         </div>
       </main>
       <footer className="text-center py-8 text-base text-[#1A1A1A]/70 bg-white/60 mt-16 rounded-t-2xl shadow-inner">
-        Copyright © EresFitness.
+        Copyright © ShapeFit.
       </footer>
     </div>
   );
