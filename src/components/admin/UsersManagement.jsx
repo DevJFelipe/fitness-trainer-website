@@ -8,7 +8,8 @@ import {
   FiFilter,
   FiMoreHorizontal,
   FiEye,
-  FiMail
+  FiMail,
+  FiUsers
 } from 'react-icons/fi'
 import { usuarioService } from '../../services'
 

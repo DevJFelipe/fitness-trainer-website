@@ -8,7 +8,8 @@ import {
   FiEye,
   FiCalendar,
   FiUser,
-  FiTag
+  FiTag,
+  FiFileText
 } from 'react-icons/fi'
 import { contenidoService } from '../../services'
 

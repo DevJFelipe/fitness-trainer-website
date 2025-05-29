@@ -109,10 +109,10 @@ export default function AdminDashboard() {
 
   const renderActiveSection = () => {
     switch (activeSection) {
-      case 'dashboard':
-        return (
+      case 'dashboard':        return (
           <div className="space-y-6">
-            <h1 className="text-3xl font-bold text-gray-900">Dashboard Administrativo</h1>            <DashboardStats stats={dashboardData.stats} />
+            <h1 className="text-3xl font-bold text-gray-900">Dashboard Administrativo</h1>
+            <DashboardStats stats={dashboardData.stats} />
             <AnalyticsView data={dashboardData} />
           </div>
         )
@@ -124,6 +124,17 @@ export default function AdminDashboard() {
         return <PlansManagement plans={dashboardData.plans} />
       case 'testimonials':
         return <TestimonialsManagement testimonials={dashboardData.testimonials} />
+      case 'analytics':
+        return <AnalyticsView data={dashboardData} />
+      case 'settings':
+        return (
+          <div className="space-y-6">
+            <h1 className="text-3xl font-bold text-gray-900">Configuración</h1>
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <p className="text-gray-600">Panel de configuración en desarrollo...</p>
+            </div>
+          </div>
+        )
       default:
         return <DashboardStats stats={dashboardData.stats} />
     }

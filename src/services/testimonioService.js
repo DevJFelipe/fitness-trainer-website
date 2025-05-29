@@ -1,8 +1,7 @@
 // src/services/testimonioService.js
 import { supabase } from '../config/supabaseClient'
 
-export const testimonioService = {
-  // Obtener todos los testimonios
+export const testimonioService = {  // Obtener todos los testimonios
   async getAllTestimonios() {
     try {
       const { data, error } = await supabase
@@ -14,7 +13,7 @@ export const testimonioService = {
         .order('fecha', { ascending: false })
 
       if (error) throw error
-      return { success: true, testimonios: data }
+      return { success: true, data }
     } catch (error) {
       return { success: false, error: error.message }
     }

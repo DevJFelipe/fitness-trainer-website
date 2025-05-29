@@ -3,7 +3,7 @@ import { supabase } from '../config/supabaseClient'
 
 export const planService = {
   // Obtener todos los planes disponibles
-  async getAllPlans() {
+  async getAllPlanes() {
     try {
       const { data, error } = await supabase
         .from('plan')
@@ -16,11 +16,10 @@ export const planService = {
         .order('fecha_inicio', { ascending: false })
 
       if (error) throw error
-      return { success: true, plans: data }
+      return { success: true, data: data }
     } catch (error) {
       return { success: false, error: error.message }
-    }
-  },
+    }  },
 
   // Obtener planes por tipo
   async getPlansByType(tipo) {
