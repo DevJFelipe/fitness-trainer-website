@@ -6,6 +6,7 @@ import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import BlogPage from './pages/BlogPage'
 import BlogPost from './components/blog/BlogPost'
+import BlogCategoryPage from './components/blog/BlogCategoryPage'
 import ExercisesPage from './pages/ExercisesPage'
 import MuscleGroupPage from './pages/MuscleGroupPage'
 import RoutinesPage from './pages/RoutinesPage'
@@ -43,10 +44,12 @@ export default function App() {
       <Route path="/trainer" element={<TrainerDashboard />} />
 
       {/* User Dashboard */}
-      <Route path="/dashboard" element={<UserDashboard />} />
-
-      {/* Dashboard de blog */}
+      <Route path="/dashboard" element={<UserDashboard />} />      {/* Dashboard de blog */}
       <Route path="/blog" element={<BlogPage />} />
+
+      {/* Páginas de categorías de blog */}
+      <Route path="/blog/categoria/entrenamiento" element={<BlogCategoryPage category="entrenamiento" />} />
+      <Route path="/blog/categoria/adelgazar" element={<BlogCategoryPage category="adelgazar" />} />
 
       {/* Página individual de blog */}
       <Route path="/blog/:id" element={<BlogPost />} />
