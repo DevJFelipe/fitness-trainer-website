@@ -1,6 +1,10 @@
 import React from 'react';
 import AuthNavbar from '../components/layout/AuthNavbar';
 import { Link } from 'react-router-dom';
+import fuerzaPrincipiantesImg from '../assets/rutinas/fuerza-principiantes.webp';
+import hipertrofiaAvanzadaImg from '../assets/rutinas/hipertrofia-avanzada.webp';
+import definicionMuscularImg from '../assets/rutinas/definicion-muscular.webp';
+import fuerzaFuncionalImg from '../assets/rutinas/fuerza-funcional.webp';
 
 const routines = [
   {
@@ -9,7 +13,7 @@ const routines = [
     description: 'Perfecta para quienes comienzan en el gimnasio. Enfocada en desarrollar fuerza base y técnica correcta.',
     duration: '8 semanas',
     level: 'Principiante',
-    image: '/src/assets/rutinas/fuerza-principiantes.webp',
+    image: fuerzaPrincipiantesImg,
   },
   {
     id: 'hipertrofia-avanzada',
@@ -17,7 +21,7 @@ const routines = [
     description: 'Diseñada para maximizar el crecimiento muscular. Incluye técnicas avanzadas de entrenamiento.',
     duration: '12 semanas',
     level: 'Avanzado',
-    image: '/src/assets/rutinas/hipertrofia-avanzada.webp',
+    image: hipertrofiaAvanzadaImg,
   },
   {
     id: 'definicion-muscular',
@@ -25,7 +29,7 @@ const routines = [
     description: 'Combinación perfecta de entrenamiento y nutrición para lograr una definición muscular óptima.',
     duration: '6 semanas',
     level: 'Intermedio',
-    image: '/src/assets/rutinas/definicion-muscular.webp',
+    image: definicionMuscularImg,
   },
   {
     id: 'fuerza-funcional',
@@ -33,7 +37,7 @@ const routines = [
     description: 'Mejora tu fuerza y movilidad con ejercicios funcionales que mejoran tu rendimiento diario.',
     duration: '8 semanas',
     level: 'Intermedio',
-    image: '/src/assets/rutinas/fuerza-funcional.webp',
+    image: fuerzaFuncionalImg,
   }
 ];
 
@@ -125,4 +129,4 @@ export default function RoutinesPage() {
       </main>
     </div>
   );
-} 
+}
