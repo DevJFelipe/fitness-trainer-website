@@ -20,7 +20,7 @@ export default function UserDashboard() {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
   const [activeSection, setActiveSection] = useState('overview')
-  const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [sidebarOpen, setSidebarOpen] = useState(false) // Start closed on mobile
   const [loading, setLoading] = useState(true)
   const [dashboardData, setDashboardData] = useState({
     plans: [],
@@ -33,7 +33,8 @@ export default function UserDashboard() {
       currentStreak: 0,
       completedPlans: 0,
       averageRating: 0
-    }  })
+    }
+  })
 
   const loadDashboardData = useCallback(async () => {
     setLoading(true)
@@ -149,15 +150,17 @@ export default function UserDashboard() {
       </div>
     )
   }  return (
-    <div className="min-h-screen bg-gradient-to-br from-[#fff7f0] via-[#f0f4ff] to-[#ffe6e6]">
+    <div className="min-h-screen bg-gradient-to-br from-[#fff7f0] via-[#f0f4ff] to-[#ffe6e6] flex">
       {/* Sidebar */}
       <UserSidebar 
         activeSection={activeSection}
         setActiveSection={setActiveSection}
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
-      />      {/* Main Content */}
-      <div className={`transition-all duration-300 ${sidebarOpen ? 'ml-80' : 'ml-20'}`}>
+      />
+
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
         <UserHeader 
           user={user}
@@ -165,17 +168,19 @@ export default function UserDashboard() {
           sidebarOpen={sidebarOpen}
           setSidebarOpen={setSidebarOpen}
         />
+        
         {/* Back to Blog Button */}
         <div className="flex justify-end px-4 py-2">
           <button
             onClick={() => navigate('/blog')}
-            className="text-[#ff6600] font-semibold hover:underline"
+            className="text-[#ff6600] font-semibold hover:underline text-sm lg:text-base"
           >
             Volver al Blog
           </button>
         </div>
+        
         {/* Page Content */}
-        <main className="p-4 lg:p-8">
+        <main className="flex-1 overflow-x-hidden overflow-y-auto p-4 lg:p-8">
           <div className="max-w-7xl mx-auto">
             {renderActiveSection()}
           </div>

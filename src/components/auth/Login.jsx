@@ -56,17 +56,17 @@ export default function Login() {
       <div className="relative z-10">
         <Navbar />
       </div>      {/* Formulario centrado */}
-      <div className="absolute inset-0 flex items-center justify-center z-10 px-4">
-        <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg">
-          <h2 className="text-2xl font-bold mb-6 text-center">Iniciar Sesión</h2>
+      <div className="absolute inset-0 flex items-center justify-center z-10 px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-sm sm:max-w-md bg-white p-6 sm:p-8 rounded-xl shadow-lg">
+          <h2 className="text-xl sm:text-2xl font-bold mb-6 text-center">Iniciar Sesión</h2>
           
           {error && (
-            <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+            <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded text-sm">
               {error}
             </div>
           )}
           
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
             <div>
               <label htmlFor="email" className="block text-sm font-medium mb-1">
                 Correo Electrónico
@@ -76,7 +76,7 @@ export default function Login() {
                 type="email"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none"
+                className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff6600] focus:border-transparent text-sm sm:text-base"
                 required
                 disabled={loading}
               />
@@ -90,20 +90,22 @@ export default function Login() {
                 type="password"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none"
+                className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff6600] focus:border-transparent text-sm sm:text-base"
                 required
                 disabled={loading}
               />
-            </div>            <button
+            </div>
+
+            <button
               type="submit"
-              className="w-full bg-[#ff6600] text-white font-bold py-2 rounded-lg hover:bg-orange-600 transition disabled:opacity-50"
+              className="w-full bg-[#ff6600] text-white font-bold py-2.5 sm:py-3 rounded-lg hover:bg-orange-600 transition disabled:opacity-50 text-sm sm:text-base"
               disabled={loading}
             >
               {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
             </button>
 
             <div className="text-center mt-4">
-              <span className="text-sm text-gray-600">
+              <span className="text-xs sm:text-sm text-gray-600">
                 ¿No tienes cuenta?{' '}
                 <button
                   type="button"

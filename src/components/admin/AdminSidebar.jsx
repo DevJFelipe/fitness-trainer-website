@@ -29,9 +29,9 @@ export default function AdminSidebar({
 }) {
   return (
     <>
-      {/* Mobile backdrop */}
+      {/* Mobile overlay */}
       {sidebarOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-gray-600 bg-opacity-75 z-20 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
@@ -39,11 +39,11 @@ export default function AdminSidebar({
 
       {/* Sidebar */}
       <div className={`
-        fixed inset-y-0 left-0 z-30 
-        ${sidebarOpen ? 'w-64' : 'w-16'} 
-        bg-white shadow-lg border-r border-gray-200 
-        transition-all duration-300 ease-in-out
-        lg:relative lg:z-auto
+        bg-white shadow-lg border-r border-gray-200
+        fixed inset-y-0 left-0 z-30
+        w-64 transform transition-transform duration-300 ease-in-out
+        ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+        lg:relative lg:translate-x-0 lg:w-16
       `}>
         {/* Header del sidebar */}
         <div className="flex items-center justify-between h-16 px-4 border-b border-gray-200">

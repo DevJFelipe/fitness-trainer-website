@@ -17,17 +17,19 @@ import {
 import { planService, usuarioService } from '../services'
 import { supabase } from '../config/supabaseClient'
 
-export default function TrainerDashboard() {  const { user, loading: authLoading } = useAuth()
+export default function TrainerDashboard() {
+  const { user, loading: authLoading } = useAuth()
   const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState('stats')
   const [detailView, setDetailView] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   const [dashboardData, setDashboardData] = useState({
     stats: {},
     plans: [],
     assignedPlans: [],
     users: []
-  })  // Función para cargar datos del dashboard
+  })// Función para cargar datos del dashboard
   const loadDashboardData = useCallback(async () => {
     try {
       setLoading(true)
@@ -161,19 +163,27 @@ export default function TrainerDashboard() {  const { user, loading: authLoading
   if (!user || user.rol?.nombre_rol !== 'entrenador') {
     return null
   }
-
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar */}
-      <TrainerSidebar activeTab={activeTab} onTabChange={setActiveTab} />
+      <TrainerSidebar 
+        activeTab={activeTab} 
+        onTabChange={setActiveTab}
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+      />
       
       {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col overflow-hidden lg:ml-0">
         {/* Header */}
-        <TrainerHeader user={user} />
+        <TrainerHeader 
+          user={user} 
+          onMenuClick={() => setSidebarOpen(true)}
+        />
         
         {/* Content */}
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50">          <div className="container mx-auto px-6 py-8">
+        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
             {/* Vistas detalladas tienen prioridad */}            {detailView === 'total-plans' && (
               <TotalPlansView 
                 plans={[...dashboardData.plans, ...dashboardData.assignedPlans]}

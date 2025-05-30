@@ -7,10 +7,11 @@ import {
   UserCircleIcon,
   ChevronDownIcon,
   Cog6ToothIcon,
-  ArrowRightOnRectangleIcon
+  ArrowRightOnRectangleIcon,
+  Bars3Icon
 } from '@heroicons/react/24/outline'
 
-export default function TrainerHeader({ user }) {
+export default function TrainerHeader({ user, onMenuClick }) {
   const [showDropdown, setShowDropdown] = useState(false)
   const { logout } = useAuth()
   const navigate = useNavigate()
@@ -21,15 +22,25 @@ export default function TrainerHeader({ user }) {
   }
 
   return (
-    <header className="bg-white shadow-sm border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="bg-white shadow-sm border-b border-gray-200">      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
-          {/* Title */}
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900">Panel de Entrenador</h1>
-            <p className="text-sm text-gray-500">
-              Gestiona planes de entrenamiento y usuarios
-            </p>
+          {/* Mobile menu button and title */}
+          <div className="flex items-center space-x-4">
+            {/* Mobile menu button */}
+            <button
+              onClick={onMenuClick}
+              className="lg:hidden p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
+            >
+              <Bars3Icon className="h-6 w-6" />
+            </button>
+            
+            {/* Title */}
+            <div>
+              <h1 className="text-xl lg:text-2xl font-bold text-gray-900">Panel de Entrenador</h1>
+              <p className="text-xs lg:text-sm text-gray-500">
+                Gestiona planes de entrenamiento y usuarios
+              </p>
+            </div>
           </div>
 
           {/* Right section */}

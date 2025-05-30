@@ -87,23 +87,23 @@ export default function Register() {
       </div>
 
       {/* Formulario centrado */}
-      <div className="absolute inset-0 z-20 flex items-center justify-center px-4 pt-20">
-        <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg">
-          <h2 className="text-2xl font-bold mb-6 text-center">Crear Cuenta</h2>
+      <div className="absolute inset-0 z-20 flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20">
+        <div className="w-full max-w-sm sm:max-w-md bg-white p-6 sm:p-8 rounded-xl shadow-lg">
+          <h2 className="text-xl sm:text-2xl font-bold mb-6 text-center">Crear Cuenta</h2>
           
           {error && (
-            <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+            <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded text-sm">
               {error}
             </div>
           )}
 
           {success && (
-            <div className="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded">
+            <div className="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded text-sm">
               {success}
             </div>
           )}
           
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
             <div>
               <label htmlFor="nombre" className="block text-sm font-medium mb-1">
                 Nombre Completo

@@ -66,16 +66,21 @@ export default function UserSidebar({
 }) {
   return (
     <>
-      {/* Overlay for mobile */}
+      {/* Mobile overlay */}
       {sidebarOpen && (
         <div 
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+          className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
           onClick={() => setSidebarOpen(false)}
         />
-      )}      {/* Sidebar */}
+      )}
+
+      {/* Sidebar */}
       <div className={`
-        fixed left-0 top-0 h-full bg-white/95 backdrop-blur-xl shadow-2xl z-50 transition-all duration-300 ease-in-out border-r border-white/20
-        ${sidebarOpen ? 'w-80' : 'w-20'}
+        bg-white/95 backdrop-blur-xl shadow-2xl border-r border-white/20
+        fixed lg:relative inset-y-0 left-0 z-50
+        w-80 transform transition-transform duration-300 ease-in-out
+        ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+        lg:w-20 lg:hover:w-80 lg:transition-all lg:duration-300
       `}>
         <div className="flex flex-col h-full">
           {/* Header */}

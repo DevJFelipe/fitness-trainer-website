@@ -17,14 +17,15 @@ const Navbar = () => {
           {/* Logo */}
           <Link 
             to="/"
-            className="text-black font-black text-xl md:text-2xl tracking-wider hover:scale-105 transition-transform duration-300"
+            className="text-black font-black text-lg md:text-2xl tracking-wider hover:scale-105 transition-transform duration-300"
           >
-            Victor's <span className="text-white">Health Synergy</span>
+            <span className="hidden sm:inline">Victor's <span className="text-white">Health Synergy</span></span>
+            <span className="sm:hidden">VHS</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8 lg:gap-12">
-            <div className="flex items-center gap-8 lg:gap-12">
+          <div className="hidden md:flex items-center gap-6 lg:gap-12">
+            <div className="flex items-center gap-6 lg:gap-12">
               {navLinks.map((link, index) => (
                 <Link
                   key={index}
@@ -40,30 +41,30 @@ const Navbar = () => {
             {/* Contact Button */}
             <Link 
               to="/contactanos"
-              className="bg-black text-white px-6 lg:px-8 py-2.5 rounded-full font-bold hover:bg-gray-900 transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-sm lg:text-base"
+              className="bg-black text-white px-4 lg:px-8 py-2.5 rounded-full font-bold hover:bg-gray-900 transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-sm lg:text-base"
             >
               CONTÁCTANOS
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile menu button */}
           <button
+            className="md:hidden p-2 rounded-lg text-black hover:bg-black hover:text-white transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-black hover:text-white transition-colors duration-300 p-2"
           >
             {mobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Navigation Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4">
+          <div className="md:hidden mt-4 py-4 border-t border-black/20">
             <div className="flex flex-col space-y-4">
               {navLinks.map((link, index) => (
                 <Link
                   key={index}
                   to={link.href}
-                  className="text-black font-bold hover:text-white transition-colors duration-300 py-2"
+                  className="text-black font-bold py-2 px-4 rounded-lg hover:bg-black hover:text-white transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.label}
@@ -71,7 +72,7 @@ const Navbar = () => {
               ))}
               <Link 
                 to="/contactanos"
-                className="bg-black text-white px-6 py-2.5 rounded-full font-bold hover:bg-gray-900 transition-all duration-300 text-center mt-4"
+                className="bg-black text-white px-4 py-3 rounded-lg font-bold text-center hover:bg-gray-900 transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 CONTÁCTANOS
@@ -84,4 +85,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar 
+export default Navbar
