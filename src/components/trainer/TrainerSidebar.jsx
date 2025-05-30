@@ -4,7 +4,8 @@ import {
   ChartBarIcon, 
   PlusCircleIcon, 
   UserGroupIcon,
-  HomeIcon
+  HomeIcon,
+  CogIcon
 } from '@heroicons/react/24/outline'
 
 const menuItems = [
@@ -25,6 +26,12 @@ const menuItems = [
     name: 'Asignar Planes',
     icon: UserGroupIcon,
     description: 'Asignar planes a usuarios'
+  },
+  {
+    key: 'manage-plans',
+    name: 'Gestionar Planes',
+    icon: CogIcon,
+    description: 'Administrar y eliminar planes'
   }
 ]
 

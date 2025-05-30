@@ -380,10 +380,113 @@ export const planService = {
             incluye_consulta: planPrecio.incluye_consulta,
             acceso_premium: planPrecio.acceso_premium
           })
+      }      return { success: true, assignment: data[0] }
+    } catch (error) {
+      return { success: false, error: error.message }
+    }
+  },
+
+  // Eliminar plan (plantilla del entrenador)
+  async deletePlan(planId, trainerId) {
+    try {
+      console.log('🗑️ Deleting plan:', planId, 'by trainer:', trainerId)
+
+      // Verificar que el plan pertenece al entrenador
+      const { data: plan, error: fetchError } = await supabase
+        .from('plan')
+        .select('id_plan, id_usuario, tipo, nivel')
+        .eq('id_plan', planId)
+        .eq('id_usuario', trainerId)
+        .single()
+
+      if (fetchError || !plan) {
+        return { success: false, error: 'Plan no encontrado o no autorizado' }
       }
 
-      return { success: true, assignment: data[0] }
+      // Eliminar primero los precios asociados
+      const { error: priceError } = await supabase
+        .from('plan_precio')
+        .delete()
+        .eq('id_plan', planId)
+
+      if (priceError) {
+        console.error('Error deleting plan prices:', priceError)
+      }
+
+      // Eliminar el plan
+      const { error: deleteError } = await supabase
+        .from('plan')
+        .delete()
+        .eq('id_plan', planId)
+        .eq('id_usuario', trainerId)
+
+      if (deleteError) {
+        return { success: false, error: deleteError.message }
+      }
+
+      console.log('✅ Plan deleted successfully')
+      return { success: true, message: 'Plan eliminado correctamente' }
     } catch (error) {
+      console.error('Error in deletePlan:', error)
+      return { success: false, error: error.message }
+    }
+  },
+
+  // Eliminar asignación de plan (plan asignado a usuario)
+  async removeAssignment(planId, trainerId) {
+    try {
+      console.log('🗑️ Removing assignment:', planId, 'by trainer:', trainerId)
+
+      // Obtener información del entrenador para verificar la asignación
+      const { data: trainerData, error: trainerError } = await supabase
+        .from('usuario')
+        .select('nombre')
+        .eq('id_usuario', trainerId)
+        .single()
+
+      if (trainerError || !trainerData) {
+        return { success: false, error: 'Entrenador no encontrado' }
+      }
+
+      // Verificar que el plan fue asignado por este entrenador
+      const { data: plan, error: fetchError } = await supabase
+        .from('plan')
+        .select('id_plan, id_usuario, descripcion, tipo, nivel')
+        .eq('id_plan', planId)
+        .ilike('descripcion', `%[Asignado por: ${trainerData.nombre}]%`)
+        .single()
+
+      if (fetchError || !plan) {
+        return { success: false, error: 'Plan asignado no encontrado o no autorizado' }
+      }
+
+      // Eliminar primero los precios asociados
+      const { error: priceError } = await supabase
+        .from('plan_precio')
+        .delete()
+        .eq('id_plan', planId)
+
+      if (priceError) {
+        console.error('Error deleting assignment prices:', priceError)
+      }
+
+      // Eliminar el plan asignado
+      const { error: deleteError } = await supabase
+        .from('plan')
+        .delete()
+        .eq('id_plan', planId)
+
+      if (deleteError) {
+        return { success: false, error: deleteError.message }
+      }
+
+      console.log('✅ Assignment removed successfully')
+      return { 
+        success: true, 
+        message: 'Asignación eliminada correctamente',
+        removedUserId: plan.id_usuario
+      }    } catch (error) {
+      console.error('Error in removeAssignment:', error)
       return { success: false, error: error.message }
     }
   }

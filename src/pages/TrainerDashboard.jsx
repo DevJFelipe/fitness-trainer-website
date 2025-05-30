@@ -7,6 +7,7 @@ import TrainerHeader from '../components/trainer/TrainerHeader'
 import TrainerStats from '../components/trainer/TrainerStats'
 import PlanCreation from '../components/trainer/PlanCreation'
 import UserAssignment from '../components/trainer/UserAssignment'
+import PlanManagement from '../components/trainer/PlanManagement'
 import { 
   TotalPlansView, 
   ActivePlansView, 
@@ -137,12 +138,15 @@ export default function TrainerDashboard() {  const { user, loading: authLoading
       loadDashboardData()
     }
   }, [user, loadDashboardData])
-
   const handlePlanCreated = () => {
     loadDashboardData()
   }
 
   const handlePlanAssigned = () => {
+    loadDashboardData()
+  }
+
+  const handlePlanDeleted = () => {
     loadDashboardData()
   }
 
@@ -207,8 +211,7 @@ export default function TrainerDashboard() {  const { user, loading: authLoading
                 onViewDetails={handleViewDetails} 
               />
             )}
-            
-            {!detailView && activeTab === 'create-plan' && (
+              {!detailView && activeTab === 'create-plan' && (
               <PlanCreation onPlanCreated={handlePlanCreated} />
             )}
             
@@ -218,6 +221,8 @@ export default function TrainerDashboard() {  const { user, loading: authLoading
                 users={dashboardData.users}
                 onPlanAssigned={handlePlanAssigned}
               />
+            )}            {!detailView && activeTab === 'manage-plans' && (
+              <PlanManagement onPlanDeleted={handlePlanDeleted} />
             )}
           </div>
         </main>
