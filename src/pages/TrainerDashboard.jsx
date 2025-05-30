@@ -14,9 +14,9 @@ import {
   AvailableUsersView 
 } from '../components/trainer/DetailedViews'
 import { planService, usuarioService } from '../services'
+import { supabase } from '../config/supabaseClient'
 
-export default function TrainerDashboard() {
-  const { user, loading: authLoading } = useAuth()
+export default function TrainerDashboard() {  const { user, loading: authLoading } = useAuth()
   const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState('stats')
   const [detailView, setDetailView] = useState(null)
@@ -24,35 +24,86 @@ export default function TrainerDashboard() {
   const [dashboardData, setDashboardData] = useState({
     stats: {},
     plans: [],
-    users: []  })
-
-  // Función para cargar datos del dashboard
+    assignedPlans: [],
+    users: []
+  })  // Función para cargar datos del dashboard
   const loadDashboardData = useCallback(async () => {
     try {
       setLoading(true)
-      
-      // Cargar planes del entrenador
-      const plansResult = await planService.getTrainerPlans(user.id_usuario)
-      const plans = plansResult.success ? plansResult.plans : []
+        // Cargar planes plantilla del entrenador y planes asignados
+      const [templatesResult, assignedResult, usersResult] = await Promise.all([
+        planService.getTrainerPlans(user.id_usuario),
+        planService.getTrainerAssignedPlans(user.id_usuario),
+        usuarioService.getAllUsuarios()
+      ])
 
-      // Cargar usuarios disponibles para asignar planes
-      const usersResult = await usuarioService.getAllUsuarios()
+      // TEMPORAL: También probar método simple para comparación
+      const simpleAssignedResult = await planService.getTrainerAssignedPlansSimple(user.id_usuario)
+      console.log('🔍 COMPARISON - Simple method result:', simpleAssignedResult)
+
+      const templates = templatesResult.success ? templatesResult.plans : []
+      const assignedPlans = assignedResult.success ? assignedResult.plans : []
       const allUsers = usersResult.success ? usersResult.users : []
+        console.log('🔍 Debug TrainerDashboard:')
+      console.log('Trainer ID:', user.id_usuario)
+      console.log('Trainer name:', user.nombre)
+      console.log('Templates result:', templatesResult)
+      console.log('Assigned plans result:', assignedResult)
+      console.log('Templates count:', templates.length)
+      console.log('Assigned plans count:', assignedPlans.length)
+      console.log('All users count:', allUsers.length)
+        // Debug completo de base de datos
+      try {
+        const { data: allPlansInDB, error: _allPlansError } = await supabase
+          .from('plan')
+          .select(`
+            *,
+            usuario:id_usuario(id_usuario, nombre, correo, rol)
+          `)
+          .order('fecha_inicio', { ascending: false })
+        
+        console.log('🔍 ALL PLANS IN DATABASE:', allPlansInDB)
+        console.log('🔍 Plans that are not from this trainer:', allPlansInDB?.filter(p => p.id_usuario !== user.id_usuario))
+        console.log('🔍 Plans with trainer assignment pattern:', allPlansInDB?.filter(p => 
+          p.descripcion && p.descripcion.includes('[Asignado por:')
+        ))
+        console.log('🔍 Plans assigned by this trainer:', allPlansInDB?.filter(p => 
+          p.descripcion && p.descripcion.includes(`[Asignado por: ${user.nombre}]`)
+        ))
+      } catch (error) {
+        console.log('🔍 Error getting all plans:', error)
+      }
       
       // Filtrar solo usuarios regulares
-      const regularUsers = allUsers.filter(u => u.rol?.nombre_rol === 'usuario')
+      const regularUsers = allUsers.filter(u => {
+        console.log('Checking user:', u.nombre, 'Role object:', u.rol, 'Role name:', u.rol?.nombre_rol)
+        return u.rol?.nombre_rol === 'usuario'
+      })
+      
+      console.log('🔍 Regular users filtered:', regularUsers.length)
+      console.log('🔍 Regular users:', regularUsers)
 
-      // Calcular estadísticas
+      // Combinar plantillas y planes asignados para las estadísticas
+      const allPlans = [...templates, ...assignedPlans]      // Calcular estadísticas
       const stats = {
-        totalPlans: plans.length,
-        activePlans: plans.filter(p => p.activo).length,
-        assignedUsers: new Set(plans.map(p => p.id_usuario)).size,
+        totalPlans: allPlans.length,
+        activePlans: allPlans.filter(p => p.activo).length,
+        assignedUsers: new Set(assignedPlans.map(p => p.id_usuario)).size,
         totalUsers: regularUsers.length
       }
 
+      console.log('🔍 Stats calculation:')
+      console.log('All plans (templates + assigned):', allPlans)
+      console.log('Assigned plans for stats:', assignedPlans)
+      console.log('User IDs from assigned plans:', assignedPlans.map(p => p.id_usuario))
+      console.log('Unique user IDs:', new Set(assignedPlans.map(p => p.id_usuario)))
+      console.log('Assigned users count:', new Set(assignedPlans.map(p => p.id_usuario)).size)
+      console.log('Final stats:', stats)
+
       setDashboardData({
         stats,
-        plans,
+        plans: templates, // Para asignación, solo usar plantillas
+        assignedPlans, // Planes ya asignados
         users: regularUsers
       })
     } catch (error) {
@@ -119,24 +170,23 @@ export default function TrainerDashboard() {
         
         {/* Content */}
         <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50">          <div className="container mx-auto px-6 py-8">
-            {/* Vistas detalladas tienen prioridad */}
-            {detailView === 'total-plans' && (
+            {/* Vistas detalladas tienen prioridad */}            {detailView === 'total-plans' && (
               <TotalPlansView 
-                plans={dashboardData.plans}
+                plans={[...dashboardData.plans, ...dashboardData.assignedPlans]}
                 onBack={handleBackToStats}
               />
             )}
             
             {detailView === 'active-plans' && (
               <ActivePlansView 
-                plans={dashboardData.plans}
+                plans={[...dashboardData.plans, ...dashboardData.assignedPlans]}
                 onBack={handleBackToStats}
               />
             )}
             
             {detailView === 'assigned-users' && (
               <AssignedUsersView 
-                plans={dashboardData.plans}
+                plans={dashboardData.assignedPlans}
                 users={dashboardData.users}
                 onBack={handleBackToStats}
               />
@@ -145,7 +195,7 @@ export default function TrainerDashboard() {
             {detailView === 'available-users' && (
               <AvailableUsersView 
                 users={dashboardData.users}
-                plans={dashboardData.plans}
+                plans={dashboardData.assignedPlans}
                 onBack={handleBackToStats}
               />
             )}

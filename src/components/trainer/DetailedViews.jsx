@@ -164,13 +164,35 @@ export function ActivePlansView({ plans, onBack }) {
 // Vista detallada de usuarios asignados
 export function AssignedUsersView({ plans, users, onBack }) {
   // Obtener usuarios únicos que tienen planes asignados
-  const assignedUserIds = new Set(plans.map(p => p.id_usuario))
-  const assignedUsers = users.filter(u => assignedUserIds.has(u.id_usuario))
+  const assignedUserIds = new Set(plans.map(p => p.id_usuario).filter(id => id != null))
+  
+  // Crear mapa de usuarios por ID para fácil acceso
+  const usersMap = {}
+  users.forEach(user => {
+    usersMap[user.id_usuario] = user
+  })
+
+  // Obtener información de usuarios asignados desde los planes o desde el mapa de usuarios
+  const assignedUsers = []
+  assignedUserIds.forEach(userId => {
+    // Buscar en el plan si tiene información del usuario
+    const planWithUser = plans.find(p => p.id_usuario === userId && p.usuario)
+    
+    if (planWithUser && planWithUser.usuario) {
+      // Usar información del usuario desde el plan
+      assignedUsers.push(planWithUser.usuario)
+    } else if (usersMap[userId]) {
+      // Usar información del usuario desde el mapa de usuarios
+      assignedUsers.push(usersMap[userId])
+    }
+  })
 
   // Contar planes por usuario
   const userPlanCounts = {}
   plans.forEach(plan => {
-    userPlanCounts[plan.id_usuario] = (userPlanCounts[plan.id_usuario] || 0) + 1
+    if (plan.id_usuario) {
+      userPlanCounts[plan.id_usuario] = (userPlanCounts[plan.id_usuario] || 0) + 1
+    }
   })
 
   return (
@@ -200,11 +222,10 @@ export function AssignedUsersView({ plans, users, onBack }) {
               <div className="bg-purple-500 rounded-full p-2 mr-3">
                 <UserGroupIcon className="h-5 w-5 text-white" />
               </div>
-              <div className="flex-1">
-                <h3 className="text-lg font-semibold text-gray-900">
+              <div className="flex-1">                <h3 className="text-lg font-semibold text-gray-900">
                   {user.nombre} {user.apellido}
                 </h3>
-                <p className="text-sm text-gray-500">{user.email}</p>
+                <p className="text-sm text-gray-500">{user.email || user.correo}</p>
               </div>
             </div>
             
@@ -270,11 +291,10 @@ export function AvailableUsersView({ users, plans, onBack }) {
               <div className="bg-orange-500 rounded-full p-2 mr-3">
                 <ClockIcon className="h-5 w-5 text-white" />
               </div>
-              <div className="flex-1">
-                <h3 className="text-lg font-semibold text-gray-900">
+              <div className="flex-1">                <h3 className="text-lg font-semibold text-gray-900">
                   {user.nombre} {user.apellido}
                 </h3>
-                <p className="text-sm text-gray-500">{user.email}</p>
+                <p className="text-sm text-gray-500">{user.email || user.correo}</p>
               </div>
             </div>
             

@@ -15,8 +15,11 @@ export default function UserAssignment({ plans, users, onPlanAssigned }) {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedPlan, setSelectedPlan] = useState(null)
   const [selectedUser, setSelectedUser] = useState('')
-
-  // Filtrar usuarios basado en el término de búsqueda
+  
+  // Debug: Log props
+  console.log('🔍 UserAssignment Debug:')
+  console.log('Plans:', plans)
+  console.log('Users:', users)// Filtrar usuarios basado en el término de búsqueda
   const filteredUsers = users.filter(user =>
     user.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
     user.correo.toLowerCase().includes(searchTerm.toLowerCase())
@@ -24,7 +27,6 @@ export default function UserAssignment({ plans, users, onPlanAssigned }) {
 
   // Obtener planes activos y disponibles
   const availablePlans = plans.filter(plan => plan.activo)
-
   // Selección de un solo usuario
   const handleUserSelect = (userId) => {
     setSelectedUser(userId)
@@ -45,21 +47,35 @@ export default function UserAssignment({ plans, users, onPlanAssigned }) {
       if (!result.success) throw new Error(result.error || 'Error asignando plan')
 
       const usuario = users.find(u => u.id_usuario === selectedUser)
-      setSuccessMessage(`Plan asignado exitosamente a ${usuario?.nombre || 'usuario'}`)
+      const plan = plans.find(p => p.id_plan === selectedPlan)
+        setSuccessMessage(
+        `🎉 ¡Plan "${plan?.tipo?.replace('_', ' ') || 'Plan'}" (${plan?.nivel}) asignado exitosamente a ${usuario?.nombre || 'usuario'}! 
+        
+        ✅ El usuario podrá ver su nuevo plan en su dashboard.
+        📊 Las estadísticas se han actualizado automáticamente.
+        🎯 Duración del plan: 30 días desde hoy.`
+      )
+      
+      // Resetear selecciones
       setSelectedUser('')
       setSelectedPlan('')
       
+      // Notificar al componente padre para actualizar estadísticas
       if (onPlanAssigned) {
         onPlanAssigned()
       }
 
-      // Clear success message after 3 seconds
+      // Clear success message after 7 seconds (más tiempo para leer el mensaje completo)
       setTimeout(() => {
         setSuccessMessage('')
-      }, 3000)
+      }, 7000)
 
     } catch (error) {
-      setErrorMessage(error.message)
+      setErrorMessage(`❌ Error al asignar plan: ${error.message}`)
+      // Clear error message after 5 seconds
+      setTimeout(() => {
+        setErrorMessage('')
+      }, 5000)
     } finally {
       setLoading(false)
     }
@@ -73,12 +89,28 @@ export default function UserAssignment({ plans, users, onPlanAssigned }) {
         <p className="text-gray-600">Asigna planes de entrenamiento a tus usuarios</p>
       </div>
 
-      {/* Messages */}
-      {successMessage && (
-        <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-          <div className="flex items-center">
-            <CheckCircleIcon className="h-5 w-5 text-green-500 mr-3" />
-            <span className="text-green-800">{successMessage}</span>
+      {/* Messages */}      {successMessage && (
+        <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-lg p-6 shadow-sm">
+          <div className="flex items-start">
+            <CheckCircleIcon className="h-6 w-6 text-green-500 mr-4 mt-1 flex-shrink-0" />
+            <div className="flex-1">
+              <h3 className="text-lg font-semibold text-green-800 mb-2">
+                ¡Asignación Exitosa! 🎉
+              </h3>
+              <div className="text-green-700 whitespace-pre-line">
+                {successMessage}
+              </div>
+              <div className="mt-3 p-3 bg-green-100 rounded-lg">
+                <p className="text-sm text-green-600 font-medium">
+                  💡 <strong>Próximos pasos:</strong>
+                </p>
+                <ul className="text-sm text-green-600 mt-1 space-y-1">
+                  <li>• El usuario puede acceder a su plan desde el dashboard</li>
+                  <li>• Puedes ver el progreso en la sección de usuarios asignados</li>
+                  <li>• Las estadísticas se actualizaron automáticamente</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       )}
