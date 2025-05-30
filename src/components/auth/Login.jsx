@@ -21,18 +21,26 @@ export default function Login() {
 
     try {
       const result = await login(email, password)
-      
-      if (result.success) {
+        if (result.success) {
         console.log('Usuario autenticado:', result.user)
         // Redirigir según el rol del usuario
-        if (result.user.rol.nombre_rol === 'admin') {
-          navigate('/admin')
-        } else {
-          navigate('/blog')
+        const userRole = result.user.rol.nombre_rol
+        
+        switch (userRole) {
+          case 'admin':
+            navigate('/admin')
+            break
+          case 'entrenador':
+            navigate('/trainer')
+            break
+          case 'usuario':
+          default:
+            navigate('/blog')
+            break
         }
       } else {
         setError(result.error)
-      }    } catch {
+      }} catch {
       setError('Error de conexión. Intenta de nuevo.')
     } finally {
       setLoading(false)

@@ -42,7 +42,6 @@ export default function AuthProvider({ children }) {
     authService.logout()
     setUser(null)
   }
-
   const value = {
     user,
     loading,
@@ -50,7 +49,8 @@ export default function AuthProvider({ children }) {
     register,
     logout,
     isAuthenticated: !!user,
-    isAdmin: user?.rol?.nombre_rol === 'admin'
+    isAdmin: user?.rol?.nombre_rol === 'admin',
+    isTrainer: user?.rol?.nombre_rol === 'entrenador'
   }
   return (
     <AuthContext.Provider value={value}>

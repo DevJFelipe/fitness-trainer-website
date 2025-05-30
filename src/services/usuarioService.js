@@ -1,8 +1,7 @@
 // src/services/usuarioService.js
 import { supabase } from '../config/supabaseClient'
 
-export const usuarioService = {
-  // Obtener todos los usuarios
+export const usuarioService = {  // Obtener todos los usuarios
   async getAllUsuarios() {
     try {
       const { data, error } = await supabase
@@ -14,7 +13,7 @@ export const usuarioService = {
         .order('fecha_registro', { ascending: false })
 
       if (error) throw error
-      return { success: true, data }
+      return { success: true, users: data }
     } catch (error) {
       return { success: false, error: error.message }
     }

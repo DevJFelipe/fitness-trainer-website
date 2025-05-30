@@ -12,6 +12,7 @@ import RoutinesPage from './pages/RoutinesPage'
 import RoutineDetailPage from './components/routines/RoutineDetailPage'
 import AdminDashboard from './pages/AdminDashboard'
 import UserDashboard from './pages/UserDashboard'
+import TrainerDashboard from './pages/TrainerDashboard'
 import TestConnection from './pages/TestConnection'
 
 export default function App() {
@@ -26,6 +27,9 @@ export default function App() {
       {/* Register form */}
       <Route path="/register" element={<Register />} />      {/* Admin Dashboard */}
       <Route path="/admin" element={<AdminDashboard />} />
+
+      {/* Trainer Dashboard */}
+      <Route path="/trainer" element={<TrainerDashboard />} />
 
       {/* User Dashboard */}
       <Route path="/dashboard" element={<UserDashboard />} />
