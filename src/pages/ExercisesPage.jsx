@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom'
 import AuthNavbar from '../components/layout/AuthNavbar'
 
 const muscleGroups = [
-  { name: "Pectorales",   image: "/src/assets/pecho.webp",        path: "/ejercicios/pectorales" },
-  { name: "Espalda",      image: "/src/assets/espalda.webp",      path: "/ejercicios/espalda" },
-  { name: "Bíceps",       image: "/src/assets/biceps.webp",       path: "/ejercicios/biceps" },
-  { name: "Tríceps",      image: "/src/assets/triceps.webp",      path: "/ejercicios/triceps" },
-  { name: "Abdomen",      image: "/src/assets/abdomen.png",       path: "/ejercicios/abdomen" },
-  { name: "Hombros",      image: "/src/assets/hombro.webp",       path: "/ejercicios/hombros" },
-  { name: "Pantorrillas", image: "/src/assets/pantorrillas.webp", path: "/ejercicios/pantorrillas" },
-  { name: "Piernas",      image: "/src/assets/piernas.webp",      path: "/ejercicios/piernas" },
+  { name: "Pectorales",   image: new URL('../assets/pecho.webp', import.meta.url).href,        path: "/ejercicios/pectorales" },
+  { name: "Espalda",      image: new URL('../assets/espalda.webp', import.meta.url).href,      path: "/ejercicios/espalda" },
+  { name: "Bíceps",       image: new URL('../assets/biceps.webp', import.meta.url).href,       path: "/ejercicios/biceps" },
+  { name: "Tríceps",      image: new URL('../assets/triceps.webp', import.meta.url).href,      path: "/ejercicios/triceps" },
+  { name: "Abdomen",      image: new URL('../assets/abdomen.png', import.meta.url).href,       path: "/ejercicios/abdomen" },
+  { name: "Hombros",      image: new URL('../assets/hombro.webp', import.meta.url).href,       path: "/ejercicios/hombros" },
+  { name: "Pantorrillas", image: new URL('../assets/pantorrillas.webp', import.meta.url).href, path: "/ejercicios/pantorrillas" },
+  { name: "Piernas",      image: new URL('../assets/piernas.webp', import.meta.url).href,      path: "/ejercicios/piernas" },
 ]
 
 const recentExercises = [
@@ -19,21 +19,21 @@ const recentExercises = [
     title: "Sentadilla sobre Bosu",
     difficulty: "Intermedio",
     equipment: "Peso corporal",
-    image: "/src/assets/ejercicios/sentadilla-bosu.webp",
+    image: new URL('../assets/ejercicios/sentadilla-bosu.webp', import.meta.url).href,
     path: "/ejercicios/sentadilla-sobre-bosu"
   },
   {
     title: "Sentadilla sumo (sin equipo)",
     difficulty: "Principiante",
     equipment: "Peso corporal",
-    image: "/src/assets/ejercicios/sentadilla-sumo.webp",
+    image: new URL('../assets/ejercicios/sentadilla-sumo.webp', import.meta.url).href,
     path: "/ejercicios/sentadilla-sumo-sin-equipo"
   },
   {
     title: "Sentadilla sumo en máquina Smith",
     difficulty: "Intermedio",
     equipment: "Máquina",
-    image: "/src/assets/ejercicios/sentadilla-smith.webp",
+    image: new URL('../assets/ejercicios/sentadilla-smith.webp', import.meta.url).href,
     path: "/ejercicios/sentadilla-sumo-maquina-smith"
   },
 ]

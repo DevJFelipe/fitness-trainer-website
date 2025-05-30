@@ -9,21 +9,21 @@ const exercisesByMuscleGroup = {
     exercises: [
       {
         name: "Press de banca con barra",
-        image: "/src/assets/ejercicios/pecho/press-banca.webp",
+        image: new URL('../assets/ejercicios/pecho/press-banca.webp', import.meta.url).href,
         difficulty: "Intermedio",
         equipment: "Barra y banco",
         videoUrl: "https://njsqjfxrvzlxbsnprvdz.supabase.co/storage/v1/object/sign/videos-ejercicios/pecho/press-banca.mov?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2NjNTVmM2ExLWFhN2MtNDQ2MC1iYzlhLWY1MzQ1OTMyYjJlMyJ9.eyJ1cmwiOiJ2aWRlb3MtZWplcmNpY2lvcy9wZWNoby9wcmVzcy1iYW5jYS5tb3YiLCJpYXQiOjE3NDg1NzczNjMsImV4cCI6MTc0OTE4MjE2M30.uyzTmUmHJTjQCFKDen9kjZizS9FNlReF8YxjV7PVcAk"
       },
       {
         name: "Aperturas con mancuernas",
-        image: "/src/assets/ejercicios/pecho/aperturas-mancuernas.webp",
+        image: new URL('../assets/ejercicios/pecho/aperturas-mancuernas.webp', import.meta.url).href,
         difficulty: "Principiante",
         equipment: "Mancuernas",
         videoUrl: "https://njsqjfxrvzlxbsnprvdz.supabase.co/storage/v1/object/sign/videos-ejercicios/pecho/apertura-mancuernas.mov?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2NjNTVmM2ExLWFhN2MtNDQ2MC1iYzlhLWY1MzQ1OTMyYjJlMyJ9.eyJ1cmwiOiJ2aWRlb3MtZWplcmNpY2lvcy9wZWNoby9hcGVydHVyYS1tYW5jdWVybmFzLm1vdiIsImlhdCI6MTc0ODU3NjA2MCwiZXhwIjoxNzQ5MTgwODYwfQ.ZCfh-c2YTZQejTfFf7cgWy3McdQqjGMH-20mVwMNgMA"
       },
       {
         name: "Press en banco inclinado",
-        image: "/src/assets/ejercicios/pecho/fondos-paralelas.webp",
+        image: new URL('../assets/ejercicios/pecho/fondos-paralelas.webp', import.meta.url).href,
         difficulty: "Avanzado",
         equipment: "Barra y banco inclinado",
         videoUrl: "https://njsqjfxrvzlxbsnprvdz.supabase.co/storage/v1/object/sign/videos-ejercicios/pecho/press-inclinado.mov?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2NjNTVmM2ExLWFhN2MtNDQ2MC1iYzlhLWY1MzQ1OTMyYjJlMyJ9.eyJ1cmwiOiJ2aWRlb3MtZWplcmNpY2lvcy9wZWNoby9wcmVzcy1pbmNsaW5hZG8ubW92IiwiaWF0IjoxNzQ4NTc2MDUyLCJleHAiOjE3NDkxODA4NTJ9.Hjl0uU49V5t78SBwsAbX6cRVKchcQMGivoxTEfV7EW0"
@@ -36,21 +36,21 @@ const exercisesByMuscleGroup = {
     exercises: [
       {
         name: "Remo supino con mancuernas",
-        image: "/src/assets/ejercicios/espalda/remo-supino-mancuernas.webp",
+        image: new URL('../assets/ejercicios/espalda/remo-supino-mancuernas.webp', import.meta.url).href,
         difficulty: "Principiante",
         equipment: "Mancuernas",
         videoUrl: "#"
       },
       {
         name: "Remo supino en polea baja (de pie)",
-        image: "/src/assets/ejercicios/espalda/remo-supino-polea.webp",
+        image: new URL('../assets/ejercicios/espalda/remo-supino-polea.webp', import.meta.url).href,
         difficulty: "Intermedio",
         equipment: "Máquina",
         videoUrl: "#"
       },
       {
         name: "Remo sentado en polea con agarre de cuerda",
-        image: "/src/assets/ejercicios/espalda/remo-sentado-polea.webp",
+        image: new URL('../assets/ejercicios/espalda/remo-sentado-polea.webp', import.meta.url).href,
         difficulty: "Intermedio",
         equipment: "Máquina",
         videoUrl: "#"
@@ -63,14 +63,14 @@ const exercisesByMuscleGroup = {
     exercises: [
       {
         name: "Curl de bíceps con barra",
-        image: "/src/assets/ejercicios/brazos/curl-biceps-barra.webp",
+        image: new URL('../assets/ejercicios/brazos/curl-biceps-barra.webp', import.meta.url).href,
         difficulty: "Principiante",
         equipment: "Barra",
         videoUrl: "#"
       },
       {
         name: "Curl martillo",
-        image: "/src/assets/ejercicios/brazos/curl-martillo.webp",
+        image: new URL('../assets/ejercicios/brazos/curl-martillo.webp', import.meta.url).href,
         difficulty: "Intermedio",
         equipment: "Mancuernas",
         videoUrl: "#"
@@ -83,7 +83,7 @@ const exercisesByMuscleGroup = {
     exercises: [
       {
         name: "Extensiones de tríceps en polea",
-        image: "/src/assets/ejercicios/brazos/extensiones-triceps.webp",
+        image: new URL('../assets/ejercicios/brazos/extensiones-triceps.webp', import.meta.url).href,
         difficulty: "Principiante",
         equipment: "Polea",
         videoUrl: "#"
@@ -96,21 +96,21 @@ const exercisesByMuscleGroup = {
     exercises: [
       {
         name: "Crunches",
-        image: "/src/assets/ejercicios/abdominales/crunches.webp",
+        image: new URL('../assets/ejercicios/abdominales/crunches.webp', import.meta.url).href,
         difficulty: "Principiante",
         equipment: "Peso corporal",
         videoUrl: "#"
       },
       {
         name: "Plancha",
-        image: "/src/assets/ejercicios/abdominales/plancha.webp",
+        image: new URL('../assets/ejercicios/abdominales/plancha.webp', import.meta.url).href,
         difficulty: "Principiante",
         equipment: "Peso corporal",
         videoUrl: "#"
       },
       {
         name: "Russian twist",
-        image: "/src/assets/ejercicios/abdominales/russian-twist.webp",
+        image: new URL('../assets/ejercicios/abdominales/russian-twist.webp', import.meta.url).href,
         difficulty: "Intermedio",
         equipment: "Peso/Disco",
         videoUrl: "#"
@@ -123,21 +123,21 @@ const exercisesByMuscleGroup = {
     exercises: [
       {
         name: "Press militar",
-        image: "/src/assets/ejercicios/hombros/press-militar.webp",
+        image: new URL('../assets/ejercicios/hombros/press-militar.webp', import.meta.url).href,
         difficulty: "Intermedio",
         equipment: "Barra",
         videoUrl: "#"
       },
       {
         name: "Elevaciones laterales",
-        image: "/src/assets/ejercicios/hombros/elevaciones-laterales.webp",
+        image: new URL('../assets/ejercicios/hombros/elevaciones-laterales.webp', import.meta.url).href,
         difficulty: "Principiante",
         equipment: "Mancuernas",
         videoUrl: "#"
       },
       {
         name: "Face pull",
-        image: "/src/assets/ejercicios/hombros/face-pull.webp",
+        image: new URL('../assets/ejercicios/hombros/face-pull.webp', import.meta.url).href,
         difficulty: "Intermedio",
         equipment: "Polea",
         videoUrl: "#"
@@ -150,21 +150,21 @@ const exercisesByMuscleGroup = {
     exercises: [
       {
         name: "Elevación de talones de pie",
-        image: "/src/assets/ejercicios/pantorrillas/elevacion-talones.webp",
+        image: new URL('../assets/ejercicios/pantorrillas/elevacion-talones.webp', import.meta.url).href,
         difficulty: "Principiante",
         equipment: "Máquina",
         videoUrl: "#"
       },
       {
         name: "Elevación de talones sentado",
-        image: "/src/assets/ejercicios/pantorrillas/elevacion-talones-sentado.webp",
+        image: new URL('../assets/ejercicios/pantorrillas/elevacion-talones-sentado.webp', import.meta.url).href,
         difficulty: "Principiante",
         equipment: "Máquina",
         videoUrl: "#"
       },
       {
         name: "Elevación de talones con mancuernas",
-        image: "/src/assets/ejercicios/pantorrillas/elevacion-talones-mancuernas.webp",
+        image: new URL('../assets/ejercicios/pantorrillas/elevacion-talones-mancuernas.webp', import.meta.url).href,
         difficulty: "Intermedio",
         equipment: "Mancuernas",
         videoUrl: "#"
@@ -177,21 +177,21 @@ const exercisesByMuscleGroup = {
     exercises: [
       {
         name: "Sentadillas con barra",
-        image: "/src/assets/ejercicios/piernas/sentadillas-barra.webp",
+        image: new URL('../assets/ejercicios/piernas/sentadillas-barra.webp', import.meta.url).href,
         difficulty: "Intermedio",
         equipment: "Barra",
         videoUrl: "#"
       },
       {
         name: "Peso muerto",
-        image: "/src/assets/ejercicios/piernas/peso-muerto.webp",
+        image: new URL('../assets/ejercicios/piernas/peso-muerto.webp', import.meta.url).href,
         difficulty: "Avanzado",
         equipment: "Barra",
         videoUrl: "#"
       },
       {
         name: "Extensiones de pierna",
-        image: "/src/assets/ejercicios/piernas/extensiones-pierna.webp",
+        image: new URL('../assets/ejercicios/piernas/extensiones-pierna.webp', import.meta.url).href,
         difficulty: "Principiante",
         equipment: "Máquina",
         videoUrl: "#"
