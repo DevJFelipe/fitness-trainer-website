@@ -87,7 +87,7 @@ export default function Register() {
       </div>
 
       {/* Formulario centrado */}
-      <div className="absolute inset-0 flex items-center justify-center z-10 px-4">
+      <div className="absolute inset-0 z-20 flex items-center justify-center px-4 pt-20">
         <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg">
           <h2 className="text-2xl font-bold mb-6 text-center">Crear Cuenta</h2>
           

@@ -12,21 +12,21 @@ const exercisesByMuscleGroup = {
         image: "/src/assets/ejercicios/pecho/press-banca.webp",
         difficulty: "Intermedio",
         equipment: "Barra y banco",
-        videoUrl: "#"
+        videoUrl: "https://njsqjfxrvzlxbsnprvdz.supabase.co/storage/v1/object/sign/videos-ejercicios/pecho/press-banca.mov?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2NjNTVmM2ExLWFhN2MtNDQ2MC1iYzlhLWY1MzQ1OTMyYjJlMyJ9.eyJ1cmwiOiJ2aWRlb3MtZWplcmNpY2lvcy9wZWNoby9wcmVzcy1iYW5jYS5tb3YiLCJpYXQiOjE3NDg1NzczNjMsImV4cCI6MTc0OTE4MjE2M30.uyzTmUmHJTjQCFKDen9kjZizS9FNlReF8YxjV7PVcAk"
       },
       {
         name: "Aperturas con mancuernas",
         image: "/src/assets/ejercicios/pecho/aperturas-mancuernas.webp",
         difficulty: "Principiante",
         equipment: "Mancuernas",
-        videoUrl: "#"
+        videoUrl: "https://njsqjfxrvzlxbsnprvdz.supabase.co/storage/v1/object/sign/videos-ejercicios/pecho/apertura-mancuernas.mov?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2NjNTVmM2ExLWFhN2MtNDQ2MC1iYzlhLWY1MzQ1OTMyYjJlMyJ9.eyJ1cmwiOiJ2aWRlb3MtZWplcmNpY2lvcy9wZWNoby9hcGVydHVyYS1tYW5jdWVybmFzLm1vdiIsImlhdCI6MTc0ODU3NjA2MCwiZXhwIjoxNzQ5MTgwODYwfQ.ZCfh-c2YTZQejTfFf7cgWy3McdQqjGMH-20mVwMNgMA"
       },
       {
-        name: "Fondos en paralelas",
+        name: "Press en banco inclinado",
         image: "/src/assets/ejercicios/pecho/fondos-paralelas.webp",
         difficulty: "Avanzado",
-        equipment: "Barras paralelas",
-        videoUrl: "#"
+        equipment: "Barra y banco inclinado",
+        videoUrl: "https://njsqjfxrvzlxbsnprvdz.supabase.co/storage/v1/object/sign/videos-ejercicios/pecho/press-inclinado.mov?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2NjNTVmM2ExLWFhN2MtNDQ2MC1iYzlhLWY1MzQ1OTMyYjJlMyJ9.eyJ1cmwiOiJ2aWRlb3MtZWplcmNpY2lvcy9wZWNoby9wcmVzcy1pbmNsaW5hZG8ubW92IiwiaWF0IjoxNzQ4NTc2MDUyLCJleHAiOjE3NDkxODA4NTJ9.Hjl0uU49V5t78SBwsAbX6cRVKchcQMGivoxTEfV7EW0"
       }
     ]
   },
@@ -262,14 +262,21 @@ export default function MuscleGroupPage() {
                 className="relative bg-white/60 backdrop-blur-xl rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-white/40 hover:-translate-y-2 hover:scale-[1.03]"
               >
                 <div className="relative aspect-video overflow-hidden">
-                  <img
-                    src={exercise.image}
-                    alt={exercise.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <button className="absolute top-4 left-4 w-12 h-12 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center shadow-lg group-hover:bg-[#ff6600] transition-colors duration-300 border-2 border-white/60">
-                    <div className="w-0 h-0 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent border-l-[14px] border-l-[#ff6600] group-hover:border-l-white transition-colors duration-300 ml-1" />
-                  </button>
+                  {exercise.videoUrl ? (
+                    <video controls crossOrigin="anonymous" preload="metadata" className="w-full h-full object-cover">
+                      <source
+                        src={exercise.videoUrl}
+                        type={exercise.videoUrl.includes('.mov') ? 'video/quicktime' : 'video/mp4'}
+                      />
+                      Tu navegador no soporta reproducción de video.
+                    </video>
+                  ) : (
+                    <img
+                      src={exercise.image}
+                      alt={exercise.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  )}
                 </div>
                 <div className="p-6 flex flex-col gap-3">
                   <div className="flex flex-wrap gap-2 mb-2">
@@ -291,4 +298,4 @@ export default function MuscleGroupPage() {
       </main>
     </div>
   );
-} 
+}
