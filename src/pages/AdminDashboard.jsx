@@ -63,7 +63,7 @@ export default function AdminDashboard() {
         testimonioService.getAllTestimonios()
       ])
 
-      const users = usersResult.success ? usersResult.data : []
+      const users = usersResult.success ? usersResult.users : []
       const posts = postsResult.success ? postsResult.posts : []
       const plans = plansResult.success ? plansResult.plans : []
       const testimonials = testimonialsResult.success ? testimonialsResult.data : []
