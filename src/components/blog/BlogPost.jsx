@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import AuthNavbar from '../layout/AuthNavbar';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate, Link } from 'react-router-dom';
 import { posts } from '../../data/posts';
 
 export default function BlogPost() {
@@ -13,9 +13,31 @@ export default function BlogPost() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#fff7f0] via-[#f0f4ff] to-[#ffe6e6]">
-      <AuthNavbar />
+    <div className="min-h-screen bg-gradient-to-br from-[#fff7f0] via-[#f0f4ff] to-[#ffe6e6]">      <AuthNavbar />
       <main className="container mx-auto px-4 py-12 max-w-3xl">
+        {/* Botón para volver al blog */}
+        <div className="mb-6">
+          <Link 
+            to="/blog"
+            className="inline-flex items-center gap-2 text-[#ff6600] hover:text-[#ff8533] transition-colors duration-300 font-semibold"
+          >
+            <svg 
+              className="w-5 h-5" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+            Volver al Blog
+          </Link>
+        </div>
+        
         <div className="bg-white/70 backdrop-blur-lg rounded-3xl shadow-2xl p-8 md:p-12 mt-8 mb-12 border border-white/40">
           <h1 className="text-4xl md:text-5xl font-black text-[#1A1A1A] mb-4 drop-shadow-lg">
             {post.title}
