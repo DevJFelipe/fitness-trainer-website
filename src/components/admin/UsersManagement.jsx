@@ -290,7 +290,8 @@ function UserModal({ user, onClose, onUpdate }) {
       }
     }
     loadRoles()
-  }, [])  // Actualizar formData cuando cambie el usuario
+  }, [])
+  // Actualizar formData cuando cambie el usuario
   useEffect(() => {
     if (user) {
       setFormData({
@@ -348,6 +349,7 @@ function UserModal({ user, onClose, onUpdate }) {
       setLoading(false)
     }
   }
+
   const getRoleName = (rolId) => {
     const rol = roles.find(r => r.id_rol === rolId)
     return rol ? rol.nombre_rol : 'Cargando...'
@@ -423,7 +425,8 @@ function UserModal({ user, onClose, onUpdate }) {
                   ))}
                 </select>
               )}
-                {/* Vista previa del rol seleccionado */}
+              
+              {/* Vista previa del rol seleccionado */}
               <div className="mt-2 flex items-center space-x-2">
                 <span className="text-sm text-gray-600">Rol actual:</span>
                 <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full border ${getRoleColor(getRoleName(formData.rol))}`}>
