@@ -14,6 +14,10 @@ import AdminDashboard from './pages/AdminDashboard'
 import UserDashboard from './pages/UserDashboard'
 import TrainerDashboard from './pages/TrainerDashboard'
 import TestConnection from './pages/TestConnection'
+// Nuevas páginas
+import AboutUsPage from './pages/AboutUsPage'
+import ServicesPage from './pages/ServicesPage'
+import ContactPage from './pages/ContactPage'
 
 export default function App() {
   return (
@@ -25,7 +29,14 @@ export default function App() {
       <Route path="/login" element={<Login />} />
 
       {/* Register form */}
-      <Route path="/register" element={<Register />} />      {/* Admin Dashboard */}
+      <Route path="/register" element={<Register />} />
+
+      {/* Nuevas páginas estáticas */}
+      <Route path="/sobre-nosotros" element={<AboutUsPage />} />
+      <Route path="/servicios" element={<ServicesPage />} />
+      <Route path="/contactanos" element={<ContactPage />} />
+
+      {/* Admin Dashboard */}
       <Route path="/admin" element={<AdminDashboard />} />
 
       {/* Trainer Dashboard */}
@@ -44,7 +55,9 @@ export default function App() {
       <Route path="/ejercicios" element={<ExercisesPage />} />
 
       {/* Páginas de grupos musculares específicos */}
-      <Route path="/ejercicios/:muscleGroup" element={<MuscleGroupPage />} />      {/* Página de rutinas */}
+      <Route path="/ejercicios/:muscleGroup" element={<MuscleGroupPage />} />
+
+      {/* Página de rutinas */}
       <Route path="/rutinas" element={<RoutinesPage />} />
       <Route path="/rutinas/:routineId" element={<RoutineDetailPage />} />
 
