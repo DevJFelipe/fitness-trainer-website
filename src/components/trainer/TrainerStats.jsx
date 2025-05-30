@@ -7,36 +7,43 @@ import {
   ClockIcon
 } from '@heroicons/react/24/outline'
 
-export default function TrainerStats({ data }) {
+export default function TrainerStats({ data, onViewDetails }) {
   const { stats, plans } = data
-
   const statCards = [
     {
+      key: 'total-plans',
       title: 'Total de Planes',
       value: stats.totalPlans || 0,
       icon: DocumentTextIcon,
       color: 'bg-blue-500',
+      hoverColor: 'hover:bg-blue-600',
       description: 'Planes creados'
     },
     {
+      key: 'active-plans',
       title: 'Planes Activos',
       value: stats.activePlans || 0,
       icon: CheckCircleIcon,
       color: 'bg-green-500',
+      hoverColor: 'hover:bg-green-600',
       description: 'Planes en progreso'
     },
     {
+      key: 'assigned-users',
       title: 'Usuarios Asignados',
       value: stats.assignedUsers || 0,
       icon: UserGroupIcon,
       color: 'bg-purple-500',
+      hoverColor: 'hover:bg-purple-600',
       description: 'Usuarios con planes'
     },
     {
+      key: 'available-users',
       title: 'Usuarios Disponibles',
       value: stats.totalUsers || 0,
       icon: ClockIcon,
       color: 'bg-orange-500',
+      hoverColor: 'hover:bg-orange-600',
       description: 'Sin planes asignados'
     }
   ]
@@ -47,16 +54,18 @@ export default function TrainerStats({ data }) {
       <div>
         <h2 className="text-2xl font-bold text-gray-900">Estadísticas del Dashboard</h2>
         <p className="text-gray-600">Resumen de tu actividad como entrenador</p>
-      </div>
-
-      {/* Stats Grid */}
+      </div>      {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {statCards.map((stat, index) => {
           const Icon = stat.icon
           return (
-            <div key={index} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <button
+              key={index}
+              onClick={() => onViewDetails(stat.key)}
+              className={`bg-white rounded-lg shadow-sm border border-gray-200 p-6 text-left transition-all duration-200 hover:shadow-md hover:scale-105 transform cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500`}
+            >
               <div className="flex items-center">
-                <div className={`${stat.color} rounded-lg p-3`}>
+                <div className={`${stat.color} ${stat.hoverColor} rounded-lg p-3 transition-colors duration-200`}>
                   <Icon className="h-6 w-6 text-white" />
                 </div>
                 <div className="ml-4">
@@ -66,8 +75,9 @@ export default function TrainerStats({ data }) {
               </div>
               <div className="mt-4">
                 <p className="text-sm text-gray-500">{stat.description}</p>
+                <p className="text-xs text-blue-600 mt-1 font-medium">Ver detalles →</p>
               </div>
-            </div>
+            </button>
           )
         })}
       </div>
