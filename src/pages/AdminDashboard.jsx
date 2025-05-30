@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import { 
   usuarioService, 
-  contenidoService, 
+  blogService, 
   planService, 
   testimonioService
 } from '../services'
@@ -55,16 +55,17 @@ export default function AdminDashboard() {
 
   const loadDashboardData = async () => {
     setLoading(true)
-    try {      // Cargar datos paralelos
+    try {
+      // Cargar datos paralelos
       const [usersResult, postsResult, plansResult, testimonialsResult] = await Promise.all([
         usuarioService.getAllUsuarios(),
-        contenidoService.getAllContenidos(), // Cambiar a contenidoService para obtener todos los contenidos
+        blogService.getAllPosts(),
         planService.getAllPlanes(),
         testimonioService.getAllTestimonios()
       ])
 
       const users = usersResult.success ? usersResult.data : []
-      const posts = postsResult.success ? postsResult.data : []
+      const posts = postsResult.success ? postsResult.posts : []
       const plans = plansResult.success ? plansResult.data : []
       const testimonials = testimonialsResult.success ? testimonialsResult.data : []
 

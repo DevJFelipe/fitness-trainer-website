@@ -11,6 +11,7 @@ import MuscleGroupPage from './pages/MuscleGroupPage'
 import RoutinesPage from './pages/RoutinesPage'
 import RoutineDetailPage from './components/routines/RoutineDetailPage'
 import AdminDashboard from './pages/AdminDashboard'
+import UserDashboard from './pages/UserDashboard'
 import TestConnection from './pages/TestConnection'
 
 export default function App() {
@@ -23,10 +24,11 @@ export default function App() {
       <Route path="/login" element={<Login />} />
 
       {/* Register form */}
-      <Route path="/register" element={<Register />} />
-
-      {/* Admin Dashboard */}
+      <Route path="/register" element={<Register />} />      {/* Admin Dashboard */}
       <Route path="/admin" element={<AdminDashboard />} />
+
+      {/* User Dashboard */}
+      <Route path="/dashboard" element={<UserDashboard />} />
 
       {/* Dashboard de blog */}
       <Route path="/blog" element={<BlogPage />} />

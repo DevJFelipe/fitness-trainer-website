@@ -51,9 +51,8 @@ export default function AdminSidebar({
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-[#ff6600] rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">SF</span>
-              </div>
-              <h2 className="text-xl font-bold text-gray-900">
-                <span className="text-[#ff6600]">SHAPE</span>FIT
+              </div>              <h2 className="text-xl font-bold text-gray-900">
+                <span className="text-[#ff6600]">Victor's</span> Health Synergy
               </h2>
             </div>
           )}

@@ -1,5 +1,6 @@
 // src/components/AuthNavbar.jsx
 import { FaSearch, FaBars, FaUserCircle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const links = [
   { label: 'Blog', href: '/blog' },
@@ -11,26 +12,23 @@ export default function AuthNavbar() {
   return (
     <header className="bg-gradient-to-r from-[#ff6600] to-[#ff8533] shadow-md">
       <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <a 
-            href="/" 
+        <div className="flex items-center justify-between">          {/* Logo */}
+          <Link 
+            to="/" 
             className="text-black font-black text-2xl tracking-wider transform hover:scale-105 transition-transform duration-300"
           >
-            SHAPE<span className="text-white">FIT</span>
-          </a>
-
-          {/* Enlaces de navegación - Escritorio */}
+            Victor's <span className="text-white">Health Synergy</span>
+          </Link>          {/* Enlaces de navegación - Escritorio */}
           <nav className="hidden md:flex items-center space-x-8">
             {links.map((link) => (
-              <a
+              <Link
                 key={link.href}
-                href={link.href}
+                to={link.href}
                 className="relative text-white font-semibold py-2 group transition-colors duration-300"
               >
                 {link.label}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -39,13 +37,14 @@ export default function AuthNavbar() {
             {/* Búsqueda */}
             <button className="text-white hover:text-black transition-colors duration-300">
               <FaSearch size={20} />
-            </button>
-
-            {/* Perfil */}
-            <button className="hidden md:flex items-center space-x-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full transition-all duration-300">
+            </button>            {/* Perfil */}
+            <Link 
+              to="/dashboard"
+              className="hidden md:flex items-center space-x-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full transition-all duration-300"
+            >
               <FaUserCircle size={20} />
               <span className="font-semibold">Mi Perfil</span>
-            </button>
+            </Link>
 
             {/* Menú móvil */}
             <button className="md:hidden text-white hover:text-black transition-colors duration-300">

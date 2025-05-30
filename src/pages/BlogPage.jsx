@@ -35,9 +35,8 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#fff7f0] via-[#f0f4ff] to-[#ffe6e6]">
       <AuthNavbar />
-      <main className="container mx-auto px-4 py-12 max-w-7xl">
-        <h1 className="text-5xl md:text-6xl font-black text-[#1A1A1A] mb-12 text-center drop-shadow-lg">
-          <span className="bg-gradient-to-r from-[#ff6600] to-[#ff8533] bg-clip-text text-transparent">Blog</span> ShapeFit
+      <main className="container mx-auto px-4 py-12 max-w-7xl">        <h1 className="text-5xl md:text-6xl font-black text-[#1A1A1A] mb-12 text-center drop-shadow-lg">
+          <span className="bg-gradient-to-r from-[#ff6600] to-[#ff8533] bg-clip-text text-transparent">Blog</span> Victor's Health Synergy
         </h1>
         <div className="flex flex-col gap-20">
           {organizedPosts.map((section, idx) => (
@@ -61,9 +60,8 @@ export default function BlogPage() {
             </section>
           ))}
         </div>
-      </main>
-      <footer className="text-center py-8 text-base text-[#1A1A1A]/70 bg-white/60 mt-16 rounded-t-2xl shadow-inner">
-        Copyright © ShapeFit.
+      </main>      <footer className="text-center py-8 text-base text-[#1A1A1A]/70 bg-white/60 mt-16 rounded-t-2xl shadow-inner">
+        Copyright © Victor's Health Synergy.
       </footer>
     </div>
   );

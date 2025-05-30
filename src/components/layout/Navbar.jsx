@@ -2,10 +2,9 @@ const Navbar = () => {
   return (
     <nav className="bg-[#ff6600]">
       <div className="container mx-auto px-8 py-4">
-        <div className="flex justify-between items-center">
-          {/* Logo */}
+        <div className="flex justify-between items-center">          {/* Logo */}
           <div className="text-black font-black text-2xl tracking-wider">
-            SHAPE<span className="text-white">FIT</span>
+            Victor's <span className="text-white">Health Synergy</span>
           </div>
 
           {/* Navigation Links */}
