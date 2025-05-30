@@ -263,7 +263,7 @@ export default function MuscleGroupPage() {
               >
                 <div className="relative aspect-video overflow-hidden">
                   {exercise.videoUrl ? (
-                    <video controls crossOrigin="anonymous" preload="metadata" className="w-full h-full object-cover">
+                    <video controls preload="metadata" className="w-full h-full object-cover">
                       <source
                         src={exercise.videoUrl}
                         type={exercise.videoUrl.includes('.mov') ? 'video/quicktime' : 'video/mp4'}
