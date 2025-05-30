@@ -55,18 +55,17 @@ export default function AdminDashboard() {
 
   const loadDashboardData = async () => {
     setLoading(true)
-    try {
-      // Cargar datos paralelos
+    try {      // Cargar datos paralelos
       const [usersResult, postsResult, plansResult, testimonialsResult] = await Promise.all([
         usuarioService.getAllUsuarios(),
         blogService.getAllPosts(),
-        planService.getAllPlanes(),
+        planService.getAllPlans(),
         testimonioService.getAllTestimonios()
       ])
 
       const users = usersResult.success ? usersResult.data : []
       const posts = postsResult.success ? postsResult.posts : []
-      const plans = plansResult.success ? plansResult.data : []
+      const plans = plansResult.success ? plansResult.plans : []
       const testimonials = testimonialsResult.success ? testimonialsResult.data : []
 
       // Calcular estadísticas

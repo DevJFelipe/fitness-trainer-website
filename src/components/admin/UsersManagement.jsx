@@ -1,5 +1,5 @@
 // src/components/admin/UsersManagement.jsx
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { 
   FiSearch, 
   FiEdit3, 
@@ -11,7 +11,8 @@ import {
   FiMail,
   FiUsers
 } from 'react-icons/fi'
-import { usuarioService } from '../../services'
+import { usuarioService, rolService, activityService } from '../../services'
+import { useAuth } from '../../hooks/useAuth'
 
 export default function UsersManagement({ users, onUpdate }) {
   const [searchTerm, setSearchTerm] = useState('')
@@ -251,9 +252,7 @@ export default function UsersManagement({ users, onUpdate }) {
             <p className="text-sm text-gray-500">Administradores y entrenadores</p>
           </div>
         </div>
-      </div>
-
-      {/* Modal para ver/editar usuario */}
+      </div>      {/* Modal para ver/editar usuario */}
       {showUserModal && (
         <UserModal
           user={selectedUser}
@@ -265,40 +264,245 @@ export default function UsersManagement({ users, onUpdate }) {
   )
 }
 
-// Componente modal simple (se puede expandir más adelante)
-function UserModal({ user, onClose }) {
+// Componente modal para editar usuario
+function UserModal({ user, onClose, onUpdate }) {
+  const { user: currentUser } = useAuth()
+  const [formData, setFormData] = useState({
+    nombre: user?.nombre || '',
+    correo: user?.correo || '',
+    rol: user?.rol?.id_rol || user?.rol || 3 // Por defecto usuario regular (ID 3)
+  })
+  const [roles, setRoles] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [loadingRoles, setLoadingRoles] = useState(true)
+  // Cargar roles disponibles
+  useEffect(() => {
+    const loadRoles = async () => {
+      try {
+        const result = await rolService.getAllRoles()
+        if (result.success) {
+          setRoles(result.data)
+        }
+      } catch (error) {
+        console.error('Error loading roles:', error)
+      } finally {
+        setLoadingRoles(false)
+      }
+    }
+    loadRoles()
+  }, [])  // Actualizar formData cuando cambie el usuario
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        nombre: user.nombre || '',
+        correo: user.correo || '',
+        rol: user.rol?.id_rol || user.rol || 3
+      })
+    }
+  }, [user])
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    if (!user) return
+
+    setLoading(true)
+    try {
+      // Actualizar información básica del usuario
+      const updateResult = await usuarioService.updateUsuario(user.id_usuario, {
+        nombre: formData.nombre,
+        correo: formData.correo
+      })
+
+      if (!updateResult.success) {
+        throw new Error(updateResult.error)
+      }      // Si el rol cambió, actualizarlo por separado
+      const currentRoleId = user.rol?.id_rol || user.rol
+      if (formData.rol !== currentRoleId) {
+        const oldRoleName = user.rol?.nombre_rol || 'desconocido'
+        const newRoleName = getRoleName(formData.rol)
+        
+        const roleResult = await usuarioService.updateUserRole(user.id_usuario, formData.rol)
+        if (!roleResult.success) {
+          throw new Error(roleResult.error)
+        }
+
+        // Registrar el cambio de rol en el log de actividades
+        try {
+          await activityService.logRoleChange(
+            currentUser.id_usuario,
+            user.id_usuario,
+            oldRoleName,
+            newRoleName
+          )
+        } catch (logError) {
+          console.warn('No se pudo registrar el cambio de rol en el log:', logError)
+        }
+      }
+
+      alert('Usuario actualizado exitosamente')
+      onUpdate()
+      onClose()
+    } catch (error) {
+      alert('Error al actualizar usuario: ' + error.message)
+    } finally {
+      setLoading(false)
+    }
+  }
+  const getRoleName = (rolId) => {
+    const rol = roles.find(r => r.id_rol === rolId)
+    return rol ? rol.nombre_rol : 'Cargando...'
+  }
+
+  const getRoleColor = (roleName) => {
+    switch (roleName) {
+      case 'admin':
+        return 'bg-red-100 text-red-800 border-red-200'
+      case 'entrenador':
+        return 'bg-blue-100 text-blue-800 border-blue-200'
+      case 'usuario':
+        return 'bg-green-100 text-green-800 border-green-200'
+      default:
+        return 'bg-gray-100 text-gray-800 border-gray-200'
+    }
+  }
+
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-75 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+      <div className="bg-white rounded-lg p-6 max-w-lg w-full mx-4 max-h-[90vh] overflow-y-auto">
         <h3 className="text-lg font-medium text-gray-900 mb-4">
-          {user ? 'Detalles del Usuario' : 'Nuevo Usuario'}
+          {user ? 'Editar Usuario' : 'Nuevo Usuario'}
         </h3>
         
-        {user && (
-          <div className="space-y-3">
-            <p><strong>Nombre:</strong> {user.nombre}</p>
-            <p><strong>Email:</strong> {user.correo}</p>
-            <p><strong>Rol:</strong> {user.rol.nombre_rol}</p>
-            <p><strong>Fecha de registro:</strong> {new Date(user.fecha_registro).toLocaleDateString()}</p>
-            {user.fecha_nacimiento && (
-              <p><strong>Fecha de nacimiento:</strong> {new Date(user.fecha_nacimiento).toLocaleDateString()}</p>
+        {user ? (
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Información básica */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Nombre
+              </label>
+              <input
+                type="text"
+                value={formData.nombre}
+                onChange={(e) => setFormData({...formData, nombre: e.target.value})}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ff6600] focus:border-transparent outline-none"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Correo electrónico
+              </label>
+              <input
+                type="email"
+                value={formData.correo}
+                onChange={(e) => setFormData({...formData, correo: e.target.value})}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ff6600] focus:border-transparent outline-none"
+                required
+              />
+            </div>
+
+            {/* Selector de rol */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Rol del usuario
+              </label>
+              {loadingRoles ? (
+                <div className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50">
+                  Cargando roles...
+                </div>
+              ) : (                <select
+                  value={formData.rol}
+                  onChange={(e) => setFormData({...formData, rol: parseInt(e.target.value)})}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ff6600] focus:border-transparent outline-none"
+                >
+                  {roles.map((rol) => (
+                    <option key={rol.id_rol} value={rol.id_rol}>
+                      {rol.nombre_rol} - {rol.descripcion}
+                    </option>
+                  ))}
+                </select>
+              )}
+                {/* Vista previa del rol seleccionado */}
+              <div className="mt-2 flex items-center space-x-2">
+                <span className="text-sm text-gray-600">Rol actual:</span>
+                <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full border ${getRoleColor(getRoleName(formData.rol))}`}>
+                  {getRoleName(formData.rol)}
+                </span>
+              </div>
+            </div>
+
+            {/* Información adicional (solo lectura) */}
+            <div className="bg-gray-50 rounded-lg p-4 space-y-2">
+              <h4 className="font-medium text-gray-900">Información adicional</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+                <div>
+                  <span className="text-gray-600">ID:</span> {user.id_usuario}
+                </div>
+                <div>
+                  <span className="text-gray-600">Registro:</span> {new Date(user.fecha_registro).toLocaleDateString()}
+                </div>
+                {user.fecha_nacimiento && (
+                  <div>
+                    <span className="text-gray-600">Nacimiento:</span> {new Date(user.fecha_nacimiento).toLocaleDateString()}
+                  </div>
+                )}
+                <div>
+                  <span className="text-gray-600">Rol anterior:</span> {user.rol.nombre_rol}
+                </div>
+              </div>
+            </div>            {/* Advertencia sobre cambio de rol */}
+            {formData.rol !== (user.rol?.id_rol || user.rol) && (
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                <div className="flex items-center">
+                  <div className="flex-shrink-0">
+                    <svg className="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div className="ml-3">
+                    <h3 className="text-sm font-medium text-yellow-800">
+                      Cambio de rol detectado
+                    </h3>
+                    <div className="mt-1 text-sm text-yellow-700">
+                      El usuario pasará de <strong>{user.rol.nombre_rol}</strong> a <strong>{getRoleName(formData.rol)}</strong>. 
+                      Este cambio afectará los permisos del usuario.
+                    </div>
+                  </div>
+                </div>
+              </div>
             )}
+
+            {/* Botones */}
+            <div className="flex justify-end space-x-3 pt-4">
+              <button
+                type="button"
+                onClick={onClose}
+                className="px-4 py-2 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                disabled={loading}
+              >
+                Cancelar
+              </button>
+              <button
+                type="submit"
+                className="px-4 py-2 bg-[#ff6600] text-white rounded-lg hover:bg-orange-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={loading || loadingRoles}
+              >
+                {loading ? 'Guardando...' : 'Guardar cambios'}
+              </button>
+            </div>
+          </form>
+        ) : (
+          <div className="text-center py-8">
+            <p className="text-gray-500">Funcionalidad para crear usuarios en desarrollo...</p>
+            <button
+              onClick={onClose}
+              className="mt-4 px-4 py-2 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50"
+            >
+              Cerrar
+            </button>
           </div>
         )}
-        
-        <div className="mt-6 flex justify-end space-x-3">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50"
-          >
-            Cerrar
-          </button>
-          {user && (
-            <button className="px-4 py-2 bg-[#ff6600] text-white rounded-lg hover:bg-orange-600">
-              Editar
-            </button>
-          )}
-        </div>
       </div>
     </div>
   )

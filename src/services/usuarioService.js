@@ -86,5 +86,46 @@ export const usuarioService = {
     } catch (error) {
       return { success: false, error: error.message }
     }
+  },  // Actualizar rol de usuario (solo para administradores)
+  async updateUserRole(userId, newRoleId) {
+    try {
+      const { data, error } = await supabase
+        .from('usuario')
+        .update({ rol: newRoleId })
+        .eq('id_usuario', userId)
+        .select(`
+          *,
+          rol!inner(nombre_rol, descripcion)
+        `)
+
+      if (error) throw error
+      return { success: true, data: data[0] }
+    } catch (error) {
+      return { success: false, error: error.message }
+    }
+  },
+
+  // Obtener estadísticas de usuarios por rol
+  async getUserStats() {
+    try {
+      const { data, error } = await supabase
+        .from('usuario')
+        .select(`
+          id_usuario,
+          rol!inner(nombre_rol)
+        `)
+
+      if (error) throw error
+      
+      const stats = data.reduce((acc, user) => {
+        const roleName = user.rol.nombre_rol
+        acc[roleName] = (acc[roleName] || 0) + 1
+        return acc
+      }, {})
+
+      return { success: true, stats }
+    } catch (error) {
+      return { success: false, error: error.message }
+    }
   }
 }
