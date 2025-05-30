@@ -35,25 +35,25 @@ const exercisesByMuscleGroup = {
     description: 'La espalda está compuesta por varios músculos (dorsales, infraespinoso, trapecio, entre otros). Es la constante ejecución de ejercicios lo que le dará volumen y armonía a tu espalda con la anhelada forma de "V". Comienza con los siguientes ejercicios.',
     exercises: [
       {
-        name: "Remo supino con mancuernas",
+        name: "Jalón al pecho en polea",
         image: new URL('../assets/ejercicios/espalda/remo-supino-mancuernas.webp', import.meta.url).href,
         difficulty: "Principiante",
-        equipment: "Mancuernas",
-        videoUrl: "#"
+        equipment: "Polea",
+        videoUrl: "https://njsqjfxrvzlxbsnprvdz.supabase.co/storage/v1/object/sign/videos-ejercicios/espalda/jalon-pecho.mov?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2NjNTVmM2ExLWFhN2MtNDQ2MC1iYzlhLWY1MzQ1OTMyYjJlMyJ9.eyJ1cmwiOiJ2aWRlb3MtZWplcmNpY2lvcy9lc3BhbGRhL2phbG9uLXBlY2hvLm1vdiIsImlhdCI6MTc0ODYxNjkxMywiZXhwIjoxNzQ5MjIxNzEzfQ.7Mywp8w_iMrbiwvSanhgEFA2A_kiO94z-jwKa2t8b-k"
       },
       {
-        name: "Remo supino en polea baja (de pie)",
+        name: "Jalon al pecho con mancuernas",
         image: new URL('../assets/ejercicios/espalda/remo-supino-polea.webp', import.meta.url).href,
         difficulty: "Intermedio",
-        equipment: "Máquina",
-        videoUrl: "#"
+        equipment: "Mancuernas",
+        videoUrl: "https://njsqjfxrvzlxbsnprvdz.supabase.co/storage/v1/object/sign/videos-ejercicios/espalda/jalon-mancuerna.mov?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2NjNTVmM2ExLWFhN2MtNDQ2MC1iYzlhLWY1MzQ1OTMyYjJlMyJ9.eyJ1cmwiOiJ2aWRlb3MtZWplcmNpY2lvcy9lc3BhbGRhL2phbG9uLW1hbmN1ZXJuYS5tb3YiLCJpYXQiOjE3NDg2MTY5NTIsImV4cCI6MTc0OTIyMTc1Mn0.5nWjWYJ40afJo9DttMVoYpCFxJf2Ul8LlekSX56Rz1s"
       },
       {
-        name: "Remo sentado en polea con agarre de cuerda",
+        name: "Remo inclinado con barra",
         image: new URL('../assets/ejercicios/espalda/remo-sentado-polea.webp', import.meta.url).href,
         difficulty: "Intermedio",
-        equipment: "Máquina",
-        videoUrl: "#"
+        equipment: "Barra",
+        videoUrl: "https://njsqjfxrvzlxbsnprvdz.supabase.co/storage/v1/object/sign/videos-ejercicios/espalda/remo-barra.mov?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2NjNTVmM2ExLWFhN2MtNDQ2MC1iYzlhLWY1MzQ1OTMyYjJlMyJ9.eyJ1cmwiOiJ2aWRlb3MtZWplcmNpY2lvcy9lc3BhbGRhL3JlbW8tYmFycmEubW92IiwiaWF0IjoxNzQ4NjE2ODM5LCJleHAiOjE3NDkyMjE2Mzl9.25eUSVaL2c1rCQ7SU9URGmH4sn0LKn8BlI9NySPxXJU"
       }
     ]
   },
@@ -62,18 +62,18 @@ const exercisesByMuscleGroup = {
     description: 'El bíceps braquial es el músculo principal de la parte frontal del brazo. Su entrenamiento mejora la fuerza y la estética del brazo.',
     exercises: [
       {
-        name: "Curl de bíceps con barra",
+        name: "Curl de bíceps en maquina",
         image: new URL('../assets/ejercicios/brazos/curl-biceps-barra.webp', import.meta.url).href,
         difficulty: "Principiante",
-        equipment: "Barra",
-        videoUrl: "#"
+        equipment: "Máquina",
+        videoUrl: "https://njsqjfxrvzlxbsnprvdz.supabase.co/storage/v1/object/sign/videos-ejercicios/biceps/bicep-maquina.mov?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2NjNTVmM2ExLWFhN2MtNDQ2MC1iYzlhLWY1MzQ1OTMyYjJlMyJ9.eyJ1cmwiOiJ2aWRlb3MtZWplcmNpY2lvcy9iaWNlcHMvYmljZXAtbWFxdWluYS5tb3YiLCJpYXQiOjE3NDg2MTg4MDYsImV4cCI6MTc0OTIyMzYwNn0.3zcabJ7oYS-HOn5TwWP4n2-D4tKXTybg60JqZnrLobc"
       },
       {
-        name: "Curl martillo",
+        name: "Curl de bíceps en polea",
         image: new URL('../assets/ejercicios/brazos/curl-martillo.webp', import.meta.url).href,
         difficulty: "Intermedio",
         equipment: "Mancuernas",
-        videoUrl: "#"
+        videoUrl: "https://njsqjfxrvzlxbsnprvdz.supabase.co/storage/v1/object/sign/videos-ejercicios/biceps/bicep-polea.mov?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2NjNTVmM2ExLWFhN2MtNDQ2MC1iYzlhLWY1MzQ1OTMyYjJlMyJ9.eyJ1cmwiOiJ2aWRlb3MtZWplcmNpY2lvcy9iaWNlcHMvYmljZXAtcG9sZWEubW92IiwiaWF0IjoxNzQ4NjE4ODcxLCJleHAiOjE3NDkyMjM2NzF9.UDy_nmThBgoiyZ9QhiVh4OlpEk4-vP6yIGyMvHOblek"
       }
     ]
   },
@@ -82,11 +82,25 @@ const exercisesByMuscleGroup = {
     description: 'El tríceps braquial es el músculo principal de la parte posterior del brazo. Es fundamental para la extensión del codo y la fuerza general del brazo.',
     exercises: [
       {
-        name: "Extensiones de tríceps en polea",
+        name: "Extensiones de tríceps en polea con cuerda",
         image: new URL('../assets/ejercicios/brazos/extensiones-triceps.webp', import.meta.url).href,
         difficulty: "Principiante",
         equipment: "Polea",
-        videoUrl: "#"
+        videoUrl: "https://njsqjfxrvzlxbsnprvdz.supabase.co/storage/v1/object/sign/videos-ejercicios/triceps/tricep-polea-cuerda.mov?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2NjNTVmM2ExLWFhN2MtNDQ2MC1iYzlhLWY1MzQ1OTMyYjJlMyJ9.eyJ1cmwiOiJ2aWRlb3MtZWplcmNpY2lvcy90cmljZXBzL3RyaWNlcC1wb2xlYS1jdWVyZGEubW92IiwiaWF0IjoxNzQ4NjE5MDYxLCJleHAiOjE3NDkyMjM4NjF9._4uwYKCt64t2MRCrcTRyrMCtWKHBJWXGUb-jiMxip8s"
+      },
+      {
+        name: "Extensiones en banca con mancuerna",
+        image: new URL('../assets/ejercicios/brazos/extensiones-triceps.webp', import.meta.url).href,
+        difficulty: "Principiante",
+        equipment: "Mancuernas",
+        videoUrl: "https://njsqjfxrvzlxbsnprvdz.supabase.co/storage/v1/object/sign/videos-ejercicios/triceps/extension-mancuerna.mov?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2NjNTVmM2ExLWFhN2MtNDQ2MC1iYzlhLWY1MzQ1OTMyYjJlMyJ9.eyJ1cmwiOiJ2aWRlb3MtZWplcmNpY2lvcy90cmljZXBzL2V4dGVuc2lvbi1tYW5jdWVybmEubW92IiwiaWF0IjoxNzQ4NjE5MTgyLCJleHAiOjE3NDkyMjM5ODJ9.cZkJUJTCYNn2gz8FZHiUbJeSMj3UkuKqI6XsGGjhVEE"
+      },
+      {
+        name: "Press francés con barra",
+        image: new URL('../assets/ejercicios/brazos/extensiones-triceps.webp', import.meta.url).href,
+        difficulty: "Principiante",
+        equipment: "Banco y barra",
+        videoUrl: "https://njsqjfxrvzlxbsnprvdz.supabase.co/storage/v1/object/sign/videos-ejercicios/triceps/press-frances.mov?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2NjNTVmM2ExLWFhN2MtNDQ2MC1iYzlhLWY1MzQ1OTMyYjJlMyJ9.eyJ1cmwiOiJ2aWRlb3MtZWplcmNpY2lvcy90cmljZXBzL3ByZXNzLWZyYW5jZXMubW92IiwiaWF0IjoxNzQ4NjE5MjY2LCJleHAiOjE3NDkyMjQwNjZ9.zsUT3yl2q_19fqmL_KrgVB_LHdz0xGMNrO2-Mma4xA4"
       }
     ]
   },
@@ -122,25 +136,25 @@ const exercisesByMuscleGroup = {
     description: 'Los hombros están compuestos por tres cabezas deltoides: anterior, medio y posterior. Un desarrollo equilibrado de los tres es crucial para tener hombros fuertes y estéticos, además de prevenir lesiones.',
     exercises: [
       {
-        name: "Press militar",
+        name: "Press de hombro en máquina",
         image: new URL('../assets/ejercicios/hombros/press-militar.webp', import.meta.url).href,
         difficulty: "Intermedio",
-        equipment: "Barra",
-        videoUrl: "#"
+        equipment: "Máquina",
+        videoUrl: "https://njsqjfxrvzlxbsnprvdz.supabase.co/storage/v1/object/sign/videos-ejercicios/hombros/press-maquina.mov?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2NjNTVmM2ExLWFhN2MtNDQ2MC1iYzlhLWY1MzQ1OTMyYjJlMyJ9.eyJ1cmwiOiJ2aWRlb3MtZWplcmNpY2lvcy9ob21icm9zL3ByZXNzLW1hcXVpbmEubW92IiwiaWF0IjoxNzQ4NjE5NjQ0LCJleHAiOjE3NDkyMjQ0NDR9.VmYVRF-Sx-Oe9JfsTdI3f-x3Ldvfytl3-0BnejWxSXU"
       },
       {
-        name: "Elevaciones laterales",
+        name: "Vuelos laterales con mancuernas",
         image: new URL('../assets/ejercicios/hombros/elevaciones-laterales.webp', import.meta.url).href,
         difficulty: "Principiante",
         equipment: "Mancuernas",
-        videoUrl: "#"
+        videoUrl: "https://njsqjfxrvzlxbsnprvdz.supabase.co/storage/v1/object/sign/videos-ejercicios/hombros/elevacion-lateral.mov?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2NjNTVmM2ExLWFhN2MtNDQ2MC1iYzlhLWY1MzQ1OTMyYjJlMyJ9.eyJ1cmwiOiJ2aWRlb3MtZWplcmNpY2lvcy9ob21icm9zL2VsZXZhY2lvbi1sYXRlcmFsLm1vdiIsImlhdCI6MTc0ODYxOTY1OCwiZXhwIjoxNzQ5MjI0NDU4fQ.jDNADQ86VJNXksT4bHyQ28v2pdWr_9hO1PUAS-N4waA"
       },
       {
-        name: "Face pull",
+        name: "Elevaciones frontales con mancuernas",
         image: new URL('../assets/ejercicios/hombros/face-pull.webp', import.meta.url).href,
         difficulty: "Intermedio",
-        equipment: "Polea",
-        videoUrl: "#"
+        equipment: "Mancuernas",
+        videoUrl: "https://njsqjfxrvzlxbsnprvdz.supabase.co/storage/v1/object/sign/videos-ejercicios/hombros/elevacion-frontal.mov?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2NjNTVmM2ExLWFhN2MtNDQ2MC1iYzlhLWY1MzQ1OTMyYjJlMyJ9.eyJ1cmwiOiJ2aWRlb3MtZWplcmNpY2lvcy9ob21icm9zL2VsZXZhY2lvbi1mcm9udGFsLm1vdiIsImlhdCI6MTc0ODYxOTY4OCwiZXhwIjoxNzQ5MjI0NDg4fQ.J-ARP5B9TrPHogthy0NW4DziLpADuvzMJX9EsMFp4Lc"
       }
     ]
   },
@@ -149,25 +163,18 @@ const exercisesByMuscleGroup = {
     description: 'Las pantorrillas son músculos que requieren constancia y variedad en su entrenamiento. Un desarrollo adecuado de las pantorrillas mejora la estabilidad y el rendimiento en diversos deportes.',
     exercises: [
       {
-        name: "Elevación de talones de pie",
+        name: "Elevación de talones en maquina smith", 
         image: new URL('../assets/ejercicios/pantorrillas/elevacion-talones.webp', import.meta.url).href,
         difficulty: "Principiante",
         equipment: "Máquina",
-        videoUrl: "#"
+        videoUrl: "https://njsqjfxrvzlxbsnprvdz.supabase.co/storage/v1/object/sign/videos-ejercicios/pierna/pantorrilla-smith.mov?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2NjNTVmM2ExLWFhN2MtNDQ2MC1iYzlhLWY1MzQ1OTMyYjJlMyJ9.eyJ1cmwiOiJ2aWRlb3MtZWplcmNpY2lvcy9waWVybmEvcGFudG9ycmlsbGEtc21pdGgubW92IiwiaWF0IjoxNzQ4NjIwMjYxLCJleHAiOjE3NDkyMjUwNjF9.xxj4Wg3I1Ro3btn0RzsZZa4g2KCZyedMNo8kJrndBys"
       },
       {
         name: "Elevación de talones sentado",
         image: new URL('../assets/ejercicios/pantorrillas/elevacion-talones-sentado.webp', import.meta.url).href,
         difficulty: "Principiante",
         equipment: "Máquina",
-        videoUrl: "#"
-      },
-      {
-        name: "Elevación de talones con mancuernas",
-        image: new URL('../assets/ejercicios/pantorrillas/elevacion-talones-mancuernas.webp', import.meta.url).href,
-        difficulty: "Intermedio",
-        equipment: "Mancuernas",
-        videoUrl: "#"
+        videoUrl: "https://njsqjfxrvzlxbsnprvdz.supabase.co/storage/v1/object/sign/videos-ejercicios/pierna/pantorrilla-sentado.mov?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2NjNTVmM2ExLWFhN2MtNDQ2MC1iYzlhLWY1MzQ1OTMyYjJlMyJ9.eyJ1cmwiOiJ2aWRlb3MtZWplcmNpY2lvcy9waWVybmEvcGFudG9ycmlsbGEtc2VudGFkby5tb3YiLCJpYXQiOjE3NDg2MjAyOTYsImV4cCI6MTc0OTIyNTA5Nn0.slCzVo-K6rZeqZ8JuixZz1hNt6YG_NOLVK1qLpG1E_Y"
       }
     ]
   },
@@ -176,25 +183,25 @@ const exercisesByMuscleGroup = {
     description: 'Las piernas son el fundamento de un cuerpo fuerte y equilibrado. Incluyen músculos como cuádriceps, isquiotibiales, gemelos y glúteos. El entrenamiento de piernas es esencial para un desarrollo muscular completo.',
     exercises: [
       {
-        name: "Sentadillas con barra",
+        name: "Prensa de piernas",
         image: new URL('../assets/ejercicios/piernas/sentadillas-barra.webp', import.meta.url).href,
         difficulty: "Intermedio",
         equipment: "Barra",
-        videoUrl: "#"
+        videoUrl: "https://njsqjfxrvzlxbsnprvdz.supabase.co/storage/v1/object/sign/videos-ejercicios/pierna/prensa-pierna.mov?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2NjNTVmM2ExLWFhN2MtNDQ2MC1iYzlhLWY1MzQ1OTMyYjJlMyJ9.eyJ1cmwiOiJ2aWRlb3MtZWplcmNpY2lvcy9waWVybmEvcHJlbnNhLXBpZXJuYS5tb3YiLCJpYXQiOjE3NDg2MjAxMDEsImV4cCI6MTc0OTIyNDkwMX0.Ilnv2V2ic3aJ2ZynO_SXr6q35hCf7bztQLNSVrpqm0Y"
       },
       {
         name: "Peso muerto",
         image: new URL('../assets/ejercicios/piernas/peso-muerto.webp', import.meta.url).href,
         difficulty: "Avanzado",
         equipment: "Barra",
-        videoUrl: "#"
+        videoUrl: "https://njsqjfxrvzlxbsnprvdz.supabase.co/storage/v1/object/sign/videos-ejercicios/pierna/peso-muerto.mov?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2NjNTVmM2ExLWFhN2MtNDQ2MC1iYzlhLWY1MzQ1OTMyYjJlMyJ9.eyJ1cmwiOiJ2aWRlb3MtZWplcmNpY2lvcy9waWVybmEvcGVzby1tdWVydG8ubW92IiwiaWF0IjoxNzQ4NjIwMDkzLCJleHAiOjE3NDkyMjQ4OTN9.uKtYZNa_wp55mu0H2J-eGqIt7RR0IsOC0pMXaa_X5hs"
       },
       {
         name: "Extensiones de pierna",
         image: new URL('../assets/ejercicios/piernas/extensiones-pierna.webp', import.meta.url).href,
         difficulty: "Principiante",
         equipment: "Máquina",
-        videoUrl: "#"
+        videoUrl: "https://njsqjfxrvzlxbsnprvdz.supabase.co/storage/v1/object/sign/videos-ejercicios/pierna/extension-pierna.mov?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2NjNTVmM2ExLWFhN2MtNDQ2MC1iYzlhLWY1MzQ1OTMyYjJlMyJ9.eyJ1cmwiOiJ2aWRlb3MtZWplcmNpY2lvcy9waWVybmEvZXh0ZW5zaW9uLXBpZXJuYS5tb3YiLCJpYXQiOjE3NDg2MjAxMTIsImV4cCI6MTc0OTIyNDkxMn0.E7jdQRfFCWk2tujvprCuKavCNFZuj26neDzV0Eo2ld4"
       }
     ]
   }
